@@ -11,11 +11,12 @@ import MyReflectionModal from './components/MyReflectionModal';
 import Footer from './components/Footer';
 import DashboardPage from './pages/DashboardPage';
 
+import AmbientBackground from './components/AmbientBackground';
 import { 
   VIDEOS as initialVideos, 
   SHORTS as initialShorts 
 } from './data/reflectionData';
-import { Zap, Play, Eye } from 'lucide-react';
+import { Zap, Play, Eye, Sparkles, Radio, ArrowRight } from 'lucide-react';
 
 export default function App() {
   // Routing: 'home' or 'dashboard'
@@ -227,8 +228,11 @@ export default function App() {
 
   // Otherwise, render Public Website (without Timeline, Know the Source, Podcasts, Stories)
   return (
-    <div className="min-h-screen bg-[#060608] text-[#ede8df] selection:bg-amber-400/30 selection:text-amber-200">
+    <div className="relative min-h-screen bg-[#050608] text-[#ede8df] selection:bg-amber-400/30 selection:text-amber-200 overflow-x-hidden">
       
+      {/* Dynamic Luxury Ambient Background (Spotlight, Aurora Orbs, Stardust) */}
+      <AmbientBackground />
+
       {/* Primary Floating Navigation Bar */}
       <Navbar
         onOpenSearch={() => setSearchOpen(true)}
@@ -239,7 +243,7 @@ export default function App() {
         setActiveSection={setActiveSection}
       />
 
-      <main>
+      <main className="relative z-10">
         {/* 1. Cinematic Hero Section */}
         <Hero
           onWatchLatest={() => setSelectedVideo(videos[0])}
@@ -268,22 +272,30 @@ export default function App() {
 
         {/* 4. Reflection Shorts Reel Feed Grid */}
         <section id="shorts" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/[0.06]">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/[0.08]">
             <div>
               <div className="flex items-center gap-2 text-amber-400 font-mono text-[11px] tracking-widest uppercase mb-2">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                 <Zap className="w-3.5 h-3.5 fill-current" />
                 <span>Bite-sized Archival Insights</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white font-serif">
                 Reflection Shorts
               </h2>
-              <p className="text-stone-400 text-xs sm:text-sm mt-2 max-w-xl leading-relaxed">
-                Vertical archival episodes and high-impact historical reveals designed for immediate clarity.
+              <p className="text-stone-300 text-xs sm:text-sm mt-2 max-w-xl leading-relaxed font-light">
+                Vertical 9:16 archival episodes, historical revelations, and primary evidence clips designed for rapid immersion.
               </p>
             </div>
-            <p className="text-[11px] text-stone-500 font-mono mt-3 md:mt-0">
-              Click to Enter Immersive Reels Player
-            </p>
+            
+            {/* Visual Reel Indicator */}
+            <div className="flex items-center gap-3 mt-4 md:mt-0 text-[11px] font-mono text-stone-400">
+              <div className="flex items-center gap-1 text-amber-400/80">
+                <span className="w-1 h-3 bg-amber-400 animate-pulse" />
+                <span className="w-1 h-4 bg-amber-400 animate-pulse" style={{ animationDelay: '0.15s' }} />
+                <span className="w-1 h-2 bg-amber-400 animate-pulse" style={{ animationDelay: '0.3s' }} />
+              </div>
+              <span>Click Any Card to Enter Reel Mode</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
@@ -291,32 +303,35 @@ export default function App() {
               <div
                 key={s.id}
                 onClick={() => openShort(s)}
-                className="group relative aspect-[9/16] rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between p-4 sm:p-5 hover:scale-[1.02] transition-all duration-300"
+                className="group relative aspect-[9/16] rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between p-4 sm:p-5 border border-white/[0.08] hover:border-amber-400/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.9),0_0_25px_rgba(245,158,11,0.15)] hover:scale-[1.03] transition-all duration-300"
               >
+                {/* Poster Image with Zoom */}
                 <img
                   src={s.videoPoster}
                   alt={s.title}
                   onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'; }}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 z-0 bg-stone-950"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 z-0 bg-stone-950"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/40 z-10 group-hover:via-black/20 transition-colors" />
 
+                {/* Top Badge & Play Trigger */}
                 <div className="relative z-20 flex justify-between items-center">
-                  <span className="text-[10px] font-mono font-medium uppercase text-white bg-black/60 px-2.5 py-1 rounded-full border border-white/10 backdrop-blur-md">
+                  <span className="text-[10px] font-mono font-medium uppercase text-white bg-black/65 px-2.5 py-1 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
                     ⚡ Short
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                  <div className="w-9 h-9 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center shadow-xl group-hover:scale-115 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.6)] transition-all duration-300">
+                    <Play className="w-4 h-4 fill-current ml-0.5" />
                   </div>
                 </div>
 
-                <div className="relative z-20 space-y-1.5">
-                  <p className="font-serif text-white font-normal text-xs sm:text-sm group-hover:text-amber-200 leading-snug line-clamp-2">
+                {/* Bottom Meta & Title */}
+                <div className="relative z-20 space-y-2">
+                  <p className="font-serif text-white font-normal text-xs sm:text-sm group-hover:text-amber-200 leading-snug line-clamp-2 drop-shadow-md">
                     {s.title}
                   </p>
-                  <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1 font-mono">
-                    <span className="text-stone-300">@{s.author}</span>
-                    <span className="flex items-center gap-1 text-stone-400">
+                  <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1 font-mono border-t border-white/[0.08]">
+                    <span className="text-stone-300 font-medium">@{s.author}</span>
+                    <span className="flex items-center gap-1 text-amber-300 font-semibold">
                       <Eye className="w-3 h-3 text-amber-400" />
                       {s.views}
                     </span>

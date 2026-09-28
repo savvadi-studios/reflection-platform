@@ -168,7 +168,7 @@ export default function Navbar({
             {/* Studio Dashboard Button */}
             <button
               onClick={onOpenDashboard}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-black font-semibold text-xs tracking-wider uppercase hover:bg-stone-200 transition-all shadow-md hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 text-stone-950 font-bold text-xs tracking-wider uppercase hover:from-amber-300 hover:to-orange-300 transition-all shadow-md shadow-amber-500/25 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95"
               title="Open Reflection Studio Dashboard"
             >
               <LayoutDashboard className="w-3.5 h-3.5" />

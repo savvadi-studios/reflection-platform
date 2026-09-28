@@ -1,146 +1,120 @@
-import React, { useEffect, useRef } from 'react';
-import { Play, Compass, ChevronDown, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Play, Compass, ChevronDown, ArrowRight, Sparkles, ShieldCheck, Film, Award } from 'lucide-react';
 
 export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending, settings = {} }) {
-  const canvasRef = useRef(null);
-  
   const heroTagline = settings.heroTagline || 'See Beyond the Surface.';
   const heroDescription = settings.heroDescription || 'Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.';
   const tickerText = settings.announcementTicker || '1,200+ Documented Hours • 100% Primary Archives Cited • 28 States & UTs Covered • 4.5M+ Intellectual Thinkers';
   const tickerItems = tickerText.split('•').map(t => t.trim());
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    const particles = Array.from({ length: 45 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 2 + 0.6,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: -Math.random() * 0.5 - 0.15,
-      opacity: Math.random() * 0.6 + 0.2,
-      color: Math.random() > 0.5 ? 'rgba(245, 158, 11, ' : 'rgba(234, 88, 12, '
-    }));
-
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((p) => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.y < 0) {
-          p.y = height;
-          p.x = Math.random() * width;
-        }
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + p.opacity + ')';
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = '#F97316';
-        ctx.fill();
-      });
-
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   return (
-    <div id="hero" className="relative min-h-[92vh] flex flex-col justify-center items-center overflow-hidden pt-28 pb-16 px-4">
-      {/* Subtle Dust Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10 opacity-60" />
+    <div id="hero" className="relative min-h-[94vh] flex flex-col justify-center items-center overflow-hidden pt-28 pb-16 px-4">
+      
+      {/* Central Radiant Sunburst Flare */}
+      <div className="absolute top-[38%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[450px] bg-gradient-to-b from-amber-500/25 via-orange-600/15 to-transparent rounded-full blur-[150px] pointer-events-none" />
 
-      {/* Ambient Radial Spotlight */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[400px] bg-gradient-to-b from-orange-600/20 via-amber-600/10 to-transparent rounded-full blur-[140px] pointer-events-none" />
+      {/* Decorative Cinematic Lens Flare Line */}
+      <div className="absolute top-[42%] left-1/2 -translate-x-1/2 w-[90%] max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent pointer-events-none" />
 
       {/* Content Container */}
       <div className="relative z-20 max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
         
-        {/* Subtle Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-amber-300 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold">
-          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-          <span>Knowledge Archive • Digital Platform</span>
+        {/* Shimmering Studio Pill Badge */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-amber-400/30 text-amber-300 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold shadow-lg shadow-amber-500/10 backdrop-blur-md hover:border-amber-400/60 transition-colors">
+          <span className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-500 to-amber-400 animate-ping" />
+          <span className="font-mono">Independent Investigative Archive</span>
+          <span className="text-white/30">•</span>
+          <span className="text-stone-300 font-normal">Est. 2026</span>
         </div>
 
-        {/* Grand Headline: Guaranteed Single Line */}
-        <div className="space-y-2">
+        {/* Grand Headline: Single Line Cinema Title */}
+        <div className="space-y-3 relative">
           <h1 
-            style={{ fontSize: 'clamp(2.4rem, 8.5vw, 6.8rem)' }}
-            className="font-cinzel font-black tracking-[0.08em] sm:tracking-[0.16em] uppercase text-stone-100 select-none leading-none whitespace-nowrap drop-shadow-2xl"
+            style={{ fontSize: 'clamp(2.5rem, 8.8vw, 7.2rem)' }}
+            className="font-cinzel font-black tracking-[0.1em] sm:tracking-[0.18em] uppercase text-stone-100 select-none leading-none whitespace-nowrap drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)]"
           >
-            REFLECT<span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent">ION</span>
+            REFLECT<span className="bg-gradient-to-r from-amber-300 via-orange-400 to-amber-200 bg-clip-text text-transparent">ION</span>
           </h1>
 
-          <p className="font-cinzel text-base sm:text-xl md:text-2xl font-semibold tracking-[0.2em] uppercase text-amber-200/80 italic">
+          {/* Subtitle / Tagline */}
+          <p className="font-cinzel text-lg sm:text-2xl md:text-3xl font-semibold tracking-[0.22em] uppercase text-amber-200/90 italic drop-shadow-md">
             {heroTagline}
           </p>
         </div>
 
         {/* Narrative Description */}
-        <p className="max-w-xl mx-auto text-stone-400 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+        <p className="max-w-2xl mx-auto text-stone-300 text-xs sm:text-sm md:text-base font-light leading-relaxed">
           {heroDescription}
         </p>
 
-        {/* Clean, High-End Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
+        {/* Luxury Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5 pt-3">
+          
+          {/* Primary Glow Button */}
           <button
             onClick={onWatchLatest}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg shadow-orange-950/40 hover:scale-105 transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-stone-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-[0_0_35px_rgba(245,158,11,0.35)] hover:shadow-[0_0_50px_rgba(245,158,11,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 group"
           >
-            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-            <span>Watch Latest Release</span>
+            <div className="w-6 h-6 rounded-full bg-stone-950/20 flex items-center justify-center">
+              <Play className="w-3 h-3 fill-current ml-0.5" />
+            </div>
+            <span>Watch Latest Documentary</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </button>
 
+          {/* Secondary Glass Vault Button */}
           <button
             onClick={onExploreArchive}
-            className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-stone-200 hover:text-amber-300 font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-white/[0.08] hover:border-amber-500/40 transition-all duration-300"
+            className="w-full sm:w-auto px-7 py-4 rounded-full bg-white/[0.04] hover:bg-white/[0.09] text-stone-200 hover:text-amber-300 font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 border border-white/[0.1] hover:border-amber-400/50 shadow-lg backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 group"
           >
-            <Compass className="w-3.5 h-3.5 text-amber-400" />
+            <Compass className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-500" />
             <span>Explore Knowledge Vault</span>
           </button>
         </div>
 
+        {/* Floating Feature Badges */}
+        <div className="pt-6 flex flex-wrap items-center justify-center gap-3 text-xs">
+          <div className="px-3.5 py-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md flex items-center gap-2 text-stone-300">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="font-mono text-[11px]">Declassified Government Records</span>
+          </div>
+
+          <div className="px-3.5 py-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md flex items-center gap-2 text-stone-300">
+            <Film className="w-3.5 h-3.5 text-amber-400" />
+            <span className="font-mono text-[11px]">Cinematic 4K Archival Footage</span>
+          </div>
+
+          <div className="px-3.5 py-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md flex items-center gap-2 text-stone-300">
+            <Award className="w-3.5 h-3.5 text-orange-400" />
+            <span className="font-mono text-[11px]">Independent & Uncompromised</span>
+          </div>
+        </div>
+
         {/* Refined Minimalist Ticker Line */}
-        <div className="pt-12 sm:pt-16 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-stone-500 font-mono">
+        <div className="pt-8 sm:pt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-stone-400 font-mono">
           {tickerItems.map((item, idx) => (
             <React.Fragment key={idx}>
-              <span className={idx % 2 === 1 ? 'text-stone-300' : 'text-stone-500'}>{item}</span>
-              {idx < tickerItems.length - 1 && <span className="opacity-30">•</span>}
+              <span className={idx % 2 === 1 ? 'text-amber-300 font-medium' : 'text-stone-400'}>
+                {item}
+              </span>
+              {idx < tickerItems.length - 1 && <span className="opacity-25 text-amber-500">•</span>}
             </React.Fragment>
           ))}
         </div>
 
       </div>
 
-      {/* Subtle Scroll Down Prompt */}
+      {/* Interactive Scroll Down Indicator */}
       <div 
         onClick={onScrollTrending}
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 text-stone-500 hover:text-amber-400 cursor-pointer animate-bounce z-20"
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-stone-400 hover:text-amber-400 cursor-pointer group transition-colors z-20"
       >
-        <ChevronDown className="w-5 h-5" />
+        <span className="text-[9px] font-mono tracking-widest uppercase opacity-70 group-hover:opacity-100">
+          Scroll Down
+        </span>
+        <ChevronDown className="w-4 h-4 animate-bounce" />
       </div>
+
     </div>
   );
 }
