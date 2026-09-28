@@ -27,7 +27,7 @@ export default function PodcastsSection() {
   };
 
   return (
-    <section id="podcasts" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="podcasts" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-stone-800">
         <div>
@@ -51,11 +51,12 @@ export default function PodcastsSection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left: Featured Audio Player Player Deck (5 cols) */}
-        <div className="lg:col-span-5 rounded-3xl glass-panel p-6 sm:p-8 border border-amber-500/25 relative overflow-hidden flex flex-col justify-between">
-          <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-6 group">
+        <div className="lg:col-span-5 rounded-3xl glass-panel p-5 sm:p-8 border border-amber-500/25 relative overflow-hidden flex flex-col justify-between shadow-2xl">
+          <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-6 group bg-stone-950">
             <img
               src={activeEpisode.cover}
               alt={activeEpisode.title}
+              onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80'; }}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

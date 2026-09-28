@@ -275,7 +275,7 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
         <div className="lg:col-span-7 rounded-3xl glass-panel border border-amber-500/25 overflow-hidden shadow-2xl space-y-6">
           
           {/* Panoramic State Banner Header */}
-          <div className="relative aspect-[21/9] w-full overflow-hidden">
+          <div className="relative min-h-[200px] sm:min-h-[220px] aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden">
             <img
               src={selectedRegion.bannerImage}
               alt={selectedRegion.name}
@@ -283,49 +283,51 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
               className="w-full h-full object-cover"
             />
             {/* Dark gradient for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d10] via-black/40 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d10] via-black/50 to-black/70" />
 
             {/* Banner Overlay Info */}
-            <div className="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-600/90 text-stone-950">
-                    State Dossier
-                  </span>
-                  <span className="text-xs text-amber-300 font-mono">
-                    Focal Center: {selectedRegion.capital}
-                  </span>
+            <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-600/90 text-stone-950">
+                      State Dossier
+                    </span>
+                    <span className="text-[11px] sm:text-xs text-amber-300 font-mono">
+                      Focal Center: {selectedRegion.capital}
+                    </span>
+                  </div>
+                  <h3 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-black text-stone-100 drop-shadow-md truncate">
+                    {selectedRegion.name}
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-amber-200/90 font-medium italic mt-0.5 line-clamp-1">
+                    "{selectedRegion.tagline}"
+                  </p>
                 </div>
-                <h3 className="font-cinzel text-3xl sm:text-4xl font-black text-stone-100 drop-shadow-md">
-                  {selectedRegion.name}
-                </h3>
-                <p className="text-xs text-amber-200/90 font-medium italic mt-0.5">
-                  "{selectedRegion.tagline}"
-                </p>
-              </div>
 
-              {/* 3 Metric Pills */}
-              <div className="flex items-center gap-2 self-start sm:self-auto">
-                <div className="px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
-                  <span className="block text-xs font-bold text-amber-400">{selectedRegion.stats.videos}</span>
-                  <span className="text-[9px] uppercase tracking-wider text-stone-400">Videos</span>
-                </div>
-                <div className="px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
-                  <span className="block text-xs font-bold text-amber-400">{selectedRegion.stats.articles}</span>
-                  <span className="text-[9px] uppercase tracking-wider text-stone-400">Articles</span>
-                </div>
-                <div className="px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
-                  <span className="block text-xs font-bold text-emerald-400">{selectedRegion.stats.sources}</span>
-                  <span className="text-[9px] uppercase tracking-wider text-stone-400">Sources</span>
+                {/* 3 Metric Pills */}
+                <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0">
+                  <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
+                    <span className="block text-xs sm:text-sm font-bold text-amber-400">{selectedRegion.stats.videos}</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400">Videos</span>
+                  </div>
+                  <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
+                    <span className="block text-xs sm:text-sm font-bold text-amber-400">{selectedRegion.stats.articles}</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400">Articles</span>
+                  </div>
+                  <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
+                    <span className="block text-xs sm:text-sm font-bold text-emerald-400">{selectedRegion.stats.sources}</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400">Sources</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="p-6 sm:p-8 pt-0 space-y-6">
+          <div className="p-4 sm:p-6 lg:p-8 pt-0 space-y-6">
             
             {/* State Civilizational Description */}
-            <p className="text-stone-300 text-sm leading-relaxed">
+            <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
               {selectedRegion.description}
             </p>
 
@@ -340,7 +342,7 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
                     key={point}
                     className="px-3 py-1.5 rounded-xl bg-stone-900/90 text-amber-300 text-xs border border-amber-500/25 font-medium flex items-center gap-1.5 shadow-sm"
                   >
-                    <Sparkles className="w-3 h-3 text-orange-400" />
+                    <Sparkles className="w-3 h-3 text-orange-400 shrink-0" />
                     <span>{point}</span>
                   </span>
                 ))}
@@ -353,14 +355,14 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
                 Archival Documentaries on {selectedRegion.name}:
               </span>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-3.5">
                 {relatedVids.map((v) => (
                   <div
                     key={v.id}
                     onClick={() => onSelectVideo(v)}
-                    className="p-3 rounded-2xl glass-panel glass-panel-hover border border-stone-800 flex gap-3.5 cursor-pointer group"
+                    className="p-3 rounded-2xl glass-panel glass-panel-hover border border-stone-800 flex gap-3 cursor-pointer group"
                   >
-                    <div className="relative w-28 h-18 rounded-xl overflow-hidden shrink-0 bg-stone-950">
+                    <div className="relative w-24 sm:w-28 aspect-video rounded-xl overflow-hidden shrink-0 bg-stone-950">
                       <img
                         src={v.thumbnail}
                         alt={v.title}
@@ -368,20 +370,20 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                      <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono text-stone-300">
+                      <div className="absolute bottom-1 right-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-stone-300">
                         {v.duration}
                       </div>
                     </div>
 
-                    <div className="min-w-0 flex flex-col justify-between py-0.5">
+                    <div className="min-w-0 flex-1 flex flex-col justify-between py-0.5">
                       <h5 className="font-bold text-xs text-stone-100 group-hover:text-amber-300 line-clamp-2 leading-snug transition-colors">
                         {v.title}
                       </h5>
                       <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1">
-                        <span className="text-emerald-400/90 font-mono font-medium">
+                        <span className="text-emerald-400/90 font-mono font-medium truncate mr-1">
                           ✓ Verified
                         </span>
-                        <span className="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-0.5">
+                        <span className="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-0.5 shrink-0">
                           Watch <ArrowRight className="w-3 h-3" />
                         </span>
                       </div>

@@ -147,7 +147,7 @@ export default function App() {
         />
 
         {/* 4. Reflection Shorts Reel Feed Grid */}
-        <section id="shorts" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section id="shorts" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-stone-800">
             <div>
               <div className="flex items-center gap-2 text-amber-500 font-semibold text-xs uppercase tracking-widest mb-1.5">
@@ -163,17 +163,18 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
             {shorts.map((s) => (
               <div
                 key={s.id}
                 onClick={() => openShort(s)}
-                className="group relative aspect-[9/16] rounded-3xl overflow-hidden glass-panel glass-panel-hover border border-stone-800 cursor-pointer flex flex-col justify-between p-4"
+                className="group relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden glass-panel glass-panel-hover border border-stone-800 cursor-pointer flex flex-col justify-between p-3 sm:p-4"
               >
                 <img
                   src={s.videoPoster}
                   alt={s.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-0"
+                  onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'; }}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-0 bg-stone-950"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-10" />
 

@@ -81,26 +81,28 @@ export default function ShortsModal({
       {/* Top Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-5 right-5 z-50 p-2.5 rounded-full bg-stone-900/80 text-stone-300 hover:text-white border border-stone-800"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2 sm:p-2.5 rounded-full bg-stone-900/90 text-stone-300 hover:text-white border border-stone-800 shadow-xl"
+        title="Close (Esc)"
       >
-        <X className="w-6 h-6" />
+        <X className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
 
       {/* Main Container */}
-      <div className="relative flex items-center gap-6">
+      <div className="relative flex items-center gap-4 sm:gap-6 w-full justify-center max-w-lg">
         
-        {/* Vertical Reel Viewport (9:16 aspect ratio) */}
-        <div className="relative w-[340px] sm:w-[380px] h-[640px] sm:h-[700px] rounded-3xl overflow-hidden bg-[#0a0a0c] border border-amber-500/30 shadow-2xl flex flex-col justify-between">
+        {/* Vertical Reel Viewport (Responsive to screen height) */}
+        <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[85vh] max-h-[680px] rounded-3xl overflow-hidden bg-[#0a0a0c] border border-amber-500/30 shadow-2xl flex flex-col justify-between my-auto">
           
           {/* Background Reel Poster Image / Video Simulation */}
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 bg-stone-950">
             <img
               src={currentShort.videoPoster}
               alt={currentShort.title}
+              onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80'; }}
               className="w-full h-full object-cover"
             />
             {/* Dark gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/95" />
           </div>
 
           {/* Top Reel Info */}

@@ -86,38 +86,38 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center">
         
         {/* Top Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-900/90 border border-amber-500/30 text-amber-300 text-xs uppercase tracking-[0.25em] font-semibold mb-8 shadow-lg shadow-orange-950/30 animate-in fade-in slide-in-from-bottom-3 duration-700">
-          <Sparkles className="w-3.5 h-3.5 text-orange-400" />
-          <span>Digital Media Platform • Knowledge Archive • Community</span>
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-stone-900/90 border border-amber-500/30 text-amber-300 text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.25em] font-semibold mb-6 sm:mb-8 shadow-lg shadow-orange-950/30 animate-in fade-in slide-in-from-bottom-3 duration-700 max-w-full truncate">
+          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400 shrink-0" />
+          <span className="truncate">Digital Media Platform • Knowledge Archive</span>
         </div>
 
         {/* Hero Title */}
-        <h1 className="font-cinzel text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[0.08em] uppercase text-stone-100 drop-shadow-2xl select-none leading-none">
+        <h1 className="font-cinzel text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-[0.04em] sm:tracking-[0.08em] uppercase text-stone-100 drop-shadow-2xl select-none leading-tight sm:leading-none break-words">
           REFLECT<span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent">ION</span>
         </h1>
 
         {/* Core Subtitle */}
-        <div className="mt-4 mb-3">
-          <p className="font-cinzel text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.16em] uppercase text-amber-200/90 italic">
+        <div className="mt-3 sm:mt-4 mb-2 sm:mb-3">
+          <p className="font-cinzel text-base sm:text-2xl md:text-3xl font-semibold tracking-[0.1em] sm:tracking-[0.16em] uppercase text-amber-200/90 italic">
             "See Beyond the Surface."
           </p>
         </div>
 
         {/* Narrative Description */}
-        <p className="max-w-2xl mx-auto text-stone-300/80 text-sm sm:text-base font-normal leading-relaxed mt-4 mb-10">
+        <p className="max-w-2xl mx-auto text-stone-300/80 text-xs sm:text-sm md:text-base font-normal leading-relaxed mt-3 sm:mt-4 mb-8 sm:mb-10 px-2">
           Uncovering Indian history, civilizational roots, constitutional thought, and fearless discourse. 
           Every claim cataloged with verified primary sources, declassified files, and transparent methodology.
         </p>
 
         {/* 3 Core Hero Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
           {/* Watch Latest */}
           <button
             onClick={onWatchLatest}
-            className="group relative px-7 py-4 rounded-2xl bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 hover:from-orange-500 hover:to-amber-500 text-stone-950 font-bold text-sm uppercase tracking-wider flex items-center gap-3 shadow-xl shadow-orange-700/30 hover:scale-[1.03] transition-all duration-300"
+            className="w-full sm:w-auto group relative px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 hover:from-orange-500 hover:to-amber-500 text-stone-950 font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-3 shadow-xl shadow-orange-700/30 hover:scale-[1.02] transition-all duration-300"
           >
-            <div className="w-7 h-7 rounded-full bg-stone-950 text-amber-400 flex items-center justify-center group-hover:bg-stone-900 transition-colors">
-              <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-stone-950 text-amber-400 flex items-center justify-center group-hover:bg-stone-900 transition-colors shrink-0">
+              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current ml-0.5" />
             </div>
             <span>Watch Latest Release</span>
           </button>
@@ -125,24 +125,24 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
           {/* Trending */}
           <button
             onClick={onScrollTrending}
-            className="px-6 py-4 rounded-2xl bg-stone-900/90 hover:bg-stone-800/90 text-stone-200 hover:text-amber-300 font-semibold text-sm uppercase tracking-wider flex items-center gap-2.5 border border-stone-800 hover:border-amber-500/40 shadow-lg hover:scale-[1.03] transition-all duration-300"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-stone-900/90 hover:bg-stone-800/90 text-stone-200 hover:text-amber-300 font-semibold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 border border-stone-800 hover:border-amber-500/40 shadow-lg hover:scale-[1.02] transition-all duration-300"
           >
-            <Flame className="w-4 h-4 text-orange-500" />
+            <Flame className="w-4 h-4 text-orange-500 shrink-0" />
             <span>Trending This Week</span>
           </button>
 
           {/* Explore Archive */}
           <button
             onClick={onExploreArchive}
-            className="px-6 py-4 rounded-2xl bg-amber-950/20 hover:bg-amber-950/40 text-amber-300 font-semibold text-sm uppercase tracking-wider flex items-center gap-2.5 border border-amber-600/30 hover:border-amber-500/60 shadow-lg hover:scale-[1.03] transition-all duration-300"
+            className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-amber-950/20 hover:bg-amber-950/40 text-amber-300 font-semibold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 border border-amber-600/30 hover:border-amber-500/60 shadow-lg hover:scale-[1.02] transition-all duration-300"
           >
-            <Compass className="w-4 h-4 text-amber-400" />
-            <span>Explore Knowledge Archive</span>
+            <Compass className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>Explore Knowledge Vault</span>
           </button>
         </div>
 
         {/* Platform Stat Indicators */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-10 border-t border-stone-800/60">
+        <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto pt-8 sm:pt-10 border-t border-stone-800/60">
           <div className="p-4 rounded-2xl glass-panel text-center">
             <span className="block font-cinzel text-2xl font-bold text-amber-300">1,200+</span>
             <span className="text-[11px] uppercase tracking-wider text-stone-400">Documented Hours</span>

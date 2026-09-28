@@ -32,7 +32,7 @@ export default function VideoHub({
   });
 
   return (
-    <section id="videos" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="videos" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-stone-800">
         <div>
@@ -56,18 +56,18 @@ export default function VideoHub({
             placeholder="Filter library by topic..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-stone-900/90 border border-stone-800 focus:border-amber-500/50 rounded-xl text-xs text-stone-200 placeholder:text-stone-500 outline-none transition-all"
+            className="w-full pl-9 pr-4 py-2.5 bg-stone-900/90 border border-stone-800 focus:border-amber-500/50 rounded-xl text-xs text-stone-200 placeholder:text-stone-500 outline-none transition-all"
           />
         </div>
       </div>
 
       {/* Category Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none touch-pan-x">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-200 flex items-center gap-2 ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-200 flex items-center gap-2 ${
               activeCategory === cat.id
                 ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-stone-950 font-bold shadow-lg shadow-orange-950/40 scale-[1.02]'
                 : 'bg-stone-900/70 hover:bg-stone-800/80 text-stone-300 border border-stone-800/80 hover:border-amber-500/30'
@@ -84,7 +84,7 @@ export default function VideoHub({
           <p className="text-stone-400 text-sm">No videos match this filter query. Try selecting another category.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredVideos.map((video) => {
             const isSaved = savedVideoIds.includes(video.id);
 
@@ -95,12 +95,13 @@ export default function VideoHub({
               >
                 {/* Thumbnail Container */}
                 <div 
-                  className="relative aspect-video overflow-hidden cursor-pointer"
+                  className="relative aspect-video overflow-hidden cursor-pointer bg-stone-950"
                   onClick={() => onSelectVideo(video)}
                 >
                   <img
                     src={video.thumbnail}
                     alt={video.title}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80'; }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c0e] via-transparent to-black/30 opacity-70 group-hover:opacity-40 transition-opacity" />

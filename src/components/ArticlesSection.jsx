@@ -16,7 +16,7 @@ export default function ArticlesSection({ onToggleSave, savedArticleIds = [] }) 
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   return (
-    <section id="stories" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="stories" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-stone-800">
         <div>
@@ -38,7 +38,7 @@ export default function ArticlesSection({ onToggleSave, savedArticleIds = [] }) 
       </div>
 
       {/* Articles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
         {ARTICLES.map((art) => {
           const isSaved = savedArticleIds.includes(art.id);
 
@@ -49,10 +49,11 @@ export default function ArticlesSection({ onToggleSave, savedArticleIds = [] }) 
               className="group rounded-3xl overflow-hidden glass-panel glass-panel-hover border border-stone-800/90 cursor-pointer flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[16/10] overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden bg-stone-950">
                   <img
                     src={art.image}
                     alt={art.title}
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=1000&q=80'; }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d10] via-transparent to-black/30" />
