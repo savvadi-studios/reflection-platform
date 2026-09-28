@@ -80,3 +80,40 @@
 .animate-pulse-glow {
   animation: pulseGlow 8s ease-in-out infinite;
 }
+
+/* 3D Holographic Map Keyframes & Classes */
+@keyframes float3D {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+.animate-float-3d {
+  animation: float3D 3.5s ease-in-out infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(1100%); opacity: 0; }
+}
+
+.animate-scanline {
+  animation: scanline 5s linear infinite;
+}
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 10s linear infinite;
+  transform-origin: center;
+}
+
+.map-3d-stage {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
