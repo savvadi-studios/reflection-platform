@@ -120,7 +120,6 @@ export default function Footer({ onOpenSearch }) {
             <ul className="space-y-2.5 text-xs text-stone-400">
               <li><a href="#podcasts" className="hover:text-amber-300 transition-colors">Reflection Podcasts (Spotify)</a></li>
               <li><a href="#shorts" className="hover:text-amber-300 transition-colors">Vertical Archival Shorts</a></li>
-              <li><a href="#ask-ai" className="hover:text-amber-300 transition-colors">"Ask Reflection" AI Engine</a></li>
               <li><button onClick={onOpenSearch} className="hover:text-amber-300 transition-colors text-left">Search Universal Database</button></li>
             </ul>
           </div>

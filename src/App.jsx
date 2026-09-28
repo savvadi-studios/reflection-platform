@@ -10,8 +10,6 @@ import TimelineSection from './components/TimelineSection';
 import KnowTheSourceSection from './components/KnowTheSourceSection';
 import PodcastsSection from './components/PodcastsSection';
 import ArticlesSection from './components/ArticlesSection';
-import AskReflectionAI from './components/AskReflectionAI';
-import DailyQuizWidget from './components/DailyQuizWidget';
 import ShortsModal from './components/ShortsModal';
 import AdminDashboardModal from './components/AdminDashboardModal';
 import MyReflectionModal from './components/MyReflectionModal';
@@ -232,17 +230,6 @@ export default function App() {
         <ArticlesSection
           onToggleSave={handleToggleSave}
           savedArticleIds={savedArticleIds}
-        />
-
-        {/* 10. "Ask Reflection" AI Knowledge Engine */}
-        <AskReflectionAI
-          videos={videos}
-          onSelectVideo={setSelectedVideo}
-        />
-
-        {/* 11. Daily Question & Quiz of the Day */}
-        <DailyQuizWidget
-          onExploreTopic={() => setSelectedVideo(videos[1])}
         />
       </main>
 
