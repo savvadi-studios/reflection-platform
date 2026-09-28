@@ -23,8 +23,6 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-amber-400/30 text-amber-300 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold shadow-lg shadow-amber-500/10 backdrop-blur-md hover:border-amber-400/60 transition-colors">
           <span className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-500 to-amber-400 animate-ping" />
           <span className="font-mono">Independent Investigative Archive</span>
-          <span className="text-white/30">•</span>
-          <span className="text-stone-300 font-normal">Est. 2026</span>
         </div>
 
         {/* Grand Headline: Single Line Cinema Title */}
