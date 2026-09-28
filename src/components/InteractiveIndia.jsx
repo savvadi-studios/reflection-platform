@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  MapPin, 
-  Play, 
-  Sparkles, 
   Compass, 
-  BookOpen, 
-  ShieldCheck, 
   ArrowRight,
-  Crosshair,
-  Layers,
+  Sparkles,
   Info
 } from 'lucide-react';
 import { INDIA_REGIONS } from '../data/reflectionData';
@@ -24,97 +18,73 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
 
   return (
     <section id="india" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-stone-800">
+      {/* Sleek Minimalist Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-3 border-b border-white/[0.06]">
         <div>
-          <div className="flex items-center gap-2 text-amber-500 font-semibold text-xs uppercase tracking-widest mb-1.5">
-            <Compass className="w-4 h-4 text-amber-400" />
-            <span>Civilizational Cartography & Regional Vault</span>
-          </div>
-          <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black text-stone-100 tracking-wide">
+          <span className="text-[10px] font-mono tracking-widest uppercase text-amber-400 block mb-1">
+            Civilizational Cartography
+          </span>
+          <h2 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-stone-100">
             Interactive India
           </h2>
-          <p className="text-stone-400 text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
-            Select any region to unlock declassified state files, archaeological surveys, civilizational milestones, and Reflection documentaries.
-          </p>
         </div>
+        <span className="text-xs text-stone-400 mt-2 md:mt-0 font-normal">
+          Select any region to unlock declassified state files and documentaries
+        </span>
+      </div>
 
-        {/* State Quick Switcher Pills */}
-        <div className="mt-4 md:mt-0 flex flex-wrap gap-1.5">
-          {INDIA_REGIONS.map((r) => (
+      {/* State Switcher Pills */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-4 mb-8 scrollbar-none touch-pan-x">
+        {INDIA_REGIONS.map((r) => {
+          const isSelected = selectedRegionId === r.id;
+          return (
             <button
               key={r.id}
               onClick={() => setSelectedRegionId(r.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                selectedRegionId === r.id
-                  ? 'bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 text-stone-950 font-bold shadow-md shadow-orange-950/40 scale-[1.04]'
-                  : 'bg-stone-900/80 hover:bg-stone-800 text-stone-300 border border-stone-800 hover:border-amber-500/30'
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap ${
+                isSelected
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold shadow-sm'
+                  : 'bg-white/[0.03] hover:bg-white/[0.06] text-stone-400 hover:text-stone-200 border border-white/[0.05]'
               }`}
             >
               {r.name}
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
+      {/* Main Grid: Clean & Uncluttered */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left: Cartography Vector Map Panel (5 cols) */}
-        <div className="lg:col-span-5 rounded-3xl glass-panel p-6 border border-amber-500/25 relative overflow-hidden flex flex-col justify-between shadow-2xl">
-          
-          {/* Subtle Ambient Background Gradients */}
-          <div className="absolute top-0 right-0 w-56 h-56 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-56 h-56 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
-
-          {/* Map Top Bar */}
-          <div className="flex items-center justify-between mb-2 relative z-10">
-            <div className="flex items-center gap-2">
-              <Crosshair className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: '30s' }} />
-              <span className="text-xs uppercase font-mono tracking-widest text-amber-400 font-bold">
-                Radar Telemetry 28°N • 77°E
-              </span>
-            </div>
-            <span className="text-[10px] text-emerald-400 font-mono bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/30">
-              ● Live Hotspots
-            </span>
-          </div>
-
-          {/* Authentic Faithful SVG Silhouette Map of India */}
-          <div className="relative aspect-[3/4] w-full flex items-center justify-center py-2 z-10">
+        {/* Left: The Map (Clean, No Nested Boxes) */}
+        <div className="lg:col-span-5 relative flex flex-col items-center justify-center p-4">
+          <div className="relative aspect-[3/4] w-full max-w-[380px] flex items-center justify-center">
             <svg 
               viewBox="0 0 420 520" 
-              className="w-full h-full drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] select-none"
+              className="w-full h-full drop-shadow-2xl select-none"
             >
               <defs>
-                <linearGradient id="indiaFillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="indiaMapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#141418" />
-                  <stop offset="50%" stopColor="#1c1c24" />
-                  <stop offset="100%" stopColor="#111116" />
+                  <stop offset="100%" stopColor="#181820" />
                 </linearGradient>
 
-                <linearGradient id="selectedStateGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#EA580C" />
-                  <stop offset="100%" stopColor="#F59E0B" />
-                </linearGradient>
-
-                <filter id="radarGlow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                <filter id="radarFilter" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
                   <feComposite in="SourceGraphic" in2="blur" operator="over" />
                 </filter>
               </defs>
 
-              {/* Tactical Cartography Grid Lines */}
-              <g opacity="0.12" stroke="#F59E0B" strokeWidth="0.75" strokeDasharray="3 4">
-                <line x1="30" y1="80" x2="390" y2="80" />
-                <line x1="30" y1="180" x2="390" y2="180" />
-                <line x1="30" y1="280" x2="390" y2="280" />
-                <line x1="30" y1="380" x2="390" y2="380" />
-                <line x1="120" y1="20" x2="120" y2="500" />
-                <line x1="210" y1="20" x2="210" y2="500" />
-                <line x1="300" y1="20" x2="300" y2="500" />
+              {/* Grid Lines */}
+              <g opacity="0.08" stroke="#F59E0B" strokeWidth="0.8" strokeDasharray="3 4">
+                <line x1="30" y1="100" x2="390" y2="100" />
+                <line x1="30" y1="220" x2="390" y2="220" />
+                <line x1="30" y1="340" x2="390" y2="340" />
+                <line x1="140" y1="30" x2="140" y2="490" />
+                <line x1="260" y1="30" x2="260" y2="490" />
               </g>
 
-              {/* Detailed Accurate Outline of India */}
+              {/* India Silhouette */}
               <path
                 d="M 175,22 
                    C 183,18 193,18 200,24 
@@ -150,24 +120,13 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
                    C 110,132 118,118 126,102 
                    C 134,86 142,68 152,52 
                    C 160,38 168,26 175,22 Z"
-                fill="url(#indiaFillGradient)"
+                fill="url(#indiaMapGrad)"
                 stroke="#d97706"
-                strokeWidth="1.8"
-                strokeOpacity="0.55"
-                className="filter drop-shadow"
+                strokeWidth="1.2"
+                strokeOpacity="0.45"
               />
 
-              {/* Subtle Coastal and Major River Accents (Ganga, Narmada, Godavari, Krishna) */}
-              <g stroke="#F59E0B" strokeWidth="0.8" fill="none" opacity="0.22">
-                {/* Ganga River Flow */}
-                <path d="M 180,120 Q 215,145 250,170 T 300,215" />
-                {/* Godavari River Flow */}
-                <path d="M 140,270 Q 180,275 240,295" />
-                {/* Krishna River Flow */}
-                <path d="M 145,310 Q 185,325 230,340" />
-              </g>
-
-              {/* Interactive Radar Hotspots for Each State */}
+              {/* State Nodes */}
               {INDIA_REGIONS.map((region) => {
                 const isSelected = selectedRegionId === region.id;
                 const isHovered = hoveredRegionId === region.id;
@@ -179,75 +138,54 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
                     onClick={() => setSelectedRegionId(region.id)}
                     onMouseEnter={() => setHoveredRegionId(region.id)}
                     onMouseLeave={() => setHoveredRegionId(null)}
-                    className="cursor-pointer group/node"
+                    className="cursor-pointer"
                   >
-                    {/* Animated Pulsing Radar Rings when active */}
+                    {/* Pulsing ring */}
                     {isSelected && (
-                      <>
-                        <circle 
-                          cx={x} 
-                          cy={y} 
-                          r="18" 
-                          fill="none" 
-                          stroke="#F97316" 
-                          strokeWidth="1.5" 
-                          className="animate-ping"
-                          opacity="0.45"
-                        />
-                        <circle 
-                          cx={x} 
-                          cy={y} 
-                          r="28" 
-                          fill="none" 
-                          stroke="#EAB308" 
-                          strokeWidth="1" 
-                          strokeDasharray="2 3"
-                          opacity="0.35"
-                        />
-                      </>
+                      <circle 
+                        cx={x} 
+                        cy={y} 
+                        r="16" 
+                        fill="none" 
+                        stroke="#F97316" 
+                        strokeWidth="1.2" 
+                        className="animate-ping"
+                        opacity="0.4"
+                      />
                     )}
 
-                    {/* Outer Target Dot */}
+                    {/* Dot */}
                     <circle
                       cx={x}
                       cy={y}
-                      r={isSelected ? 9 : isHovered ? 7 : 5}
-                      fill={isSelected ? '#EA580C' : isHovered ? '#F59E0B' : '#78350F'}
-                      stroke={isSelected ? '#FDE047' : '#D97706'}
-                      strokeWidth={isSelected ? 2 : 1.2}
-                      filter="url(#radarGlow)"
-                      className="transition-all duration-300"
+                      r={isSelected ? 7 : isHovered ? 6 : 4.5}
+                      fill={isSelected ? '#EA580C' : isHovered ? '#F59E0B' : '#57534E'}
+                      stroke={isSelected ? '#FDE047' : '#292524'}
+                      strokeWidth={1.5}
+                      filter="url(#radarFilter)"
+                      className="transition-all duration-200"
                     />
 
-                    {/* Inner Core Dot */}
-                    <circle
-                      cx={x}
-                      cy={y}
-                      r={isSelected ? 3.5 : 2}
-                      fill="#FFFFFF"
-                    />
-
-                    {/* Clean Offset Callout Label with Background Box */}
-                    <g transform={`translate(${x + 12}, ${y - 8})`}>
+                    {/* Clean Label */}
+                    <g transform={`translate(${x + 10}, ${y - 6})`}>
                       <rect
-                        x="-3"
-                        y="-10"
-                        width={region.name.length * 6.8 + 14}
-                        height="18"
-                        rx="4"
-                        fill={isSelected ? '#0c0d12' : '#14141a'}
-                        stroke={isSelected ? '#F59E0B' : '#292524'}
+                        x="-2"
+                        y="-9"
+                        width={region.name.length * 6.5 + 10}
+                        height="16"
+                        rx="3"
+                        fill={isSelected ? '#0e0e12' : '#141418'}
+                        stroke={isSelected ? '#F59E0B' : 'transparent'}
                         strokeWidth="1"
-                        opacity={isSelected ? 0.95 : 0.8}
+                        opacity="0.9"
                       />
                       <text
-                        x="4"
+                        x="3"
                         y="3"
-                        fill={isSelected ? '#FDE047' : '#D6D3D1'}
-                        fontSize="9.5"
+                        fill={isSelected ? '#FDE047' : '#A8A29E'}
+                        fontSize="9"
                         fontFamily="sans-serif"
-                        fontWeight={isSelected ? 'bold' : '600'}
-                        letterSpacing="0.03em"
+                        fontWeight={isSelected ? 'bold' : 'normal'}
                       >
                         {region.name}
                       </text>
@@ -257,134 +195,91 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
               })}
             </svg>
           </div>
-
-          {/* Map Footer Prompt */}
-          <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between text-[11px] text-stone-400">
-            <span className="flex items-center gap-1.5">
-              <Info className="w-3.5 h-3.5 text-amber-400" />
-              <span>Click any node to navigate states</span>
-            </span>
-            <span className="font-mono text-amber-400/80">
-              Active: {selectedRegion.name}
-            </span>
-          </div>
-
+          <span className="text-[11px] text-stone-500 font-mono mt-3">
+            Click map pins or state pills above
+          </span>
         </div>
 
-        {/* Right: State Dossier Profile & Documentaries (7 cols) */}
-        <div className="lg:col-span-7 rounded-3xl glass-panel border border-amber-500/25 overflow-hidden shadow-2xl space-y-6">
+        {/* Right: Modern State Dossier Showcase */}
+        <div className="lg:col-span-7 rounded-3xl glass-card overflow-hidden">
           
-          {/* Panoramic State Banner Header */}
-          <div className="relative min-h-[200px] sm:min-h-[220px] aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden">
+          {/* Panoramic Image Header */}
+          <div className="relative aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden bg-stone-950">
             <img
               src={selectedRegion.bannerImage}
               alt={selectedRegion.name}
               onError={(e) => { e.currentTarget.src = fallbackImage; }}
               className="w-full h-full object-cover"
             />
-            {/* Dark gradient for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d10] via-black/50 to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e12] via-black/40 to-transparent" />
 
-            {/* Banner Overlay Info */}
-            <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-600/90 text-stone-950">
-                      State Dossier
-                    </span>
-                    <span className="text-[11px] sm:text-xs text-amber-300 font-mono">
-                      Focal Center: {selectedRegion.capital}
-                    </span>
-                  </div>
-                  <h3 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-black text-stone-100 drop-shadow-md truncate">
-                    {selectedRegion.name}
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-amber-200/90 font-medium italic mt-0.5 line-clamp-1">
-                    "{selectedRegion.tagline}"
-                  </p>
-                </div>
+            <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+              <div>
+                <span className="text-[10px] font-mono text-amber-300 block mb-0.5">
+                  Capital: {selectedRegion.capital}
+                </span>
+                <h3 className="font-cinzel text-2xl sm:text-3xl font-black text-stone-100">
+                  {selectedRegion.name}
+                </h3>
+              </div>
 
-                {/* 3 Metric Pills */}
-                <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0">
-                  <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
-                    <span className="block text-xs sm:text-sm font-bold text-amber-400">{selectedRegion.stats.videos}</span>
-                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400">Videos</span>
-                  </div>
-                  <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
-                    <span className="block text-xs sm:text-sm font-bold text-amber-400">{selectedRegion.stats.articles}</span>
-                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400">Articles</span>
-                  </div>
-                  <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
-                    <span className="block text-xs sm:text-sm font-bold text-emerald-400">{selectedRegion.stats.sources}</span>
-                    <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-stone-400">Sources</span>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-[10px] font-mono text-stone-300 border border-white/[0.08]">
+                  {selectedRegion.stats.videos} Documentaries
+                </span>
+                <span className="px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-[10px] font-mono text-emerald-400 border border-white/[0.08]">
+                  {selectedRegion.stats.sources} Sources
+                </span>
               </div>
             </div>
           </div>
 
-          <div className="p-4 sm:p-6 lg:p-8 pt-0 space-y-6">
-            
-            {/* State Civilizational Description */}
+          {/* Dossier Content */}
+          <div className="p-5 sm:p-7 space-y-6">
             <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
               {selectedRegion.description}
             </p>
 
-            {/* Key Historical & Cultural Pillars */}
-            <div>
-              <span className="text-xs uppercase font-bold tracking-widest text-stone-400 block mb-2.5">
-                Key Historical & Cultural Pillars:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {selectedRegion.focalPoints.map((point) => (
-                  <span
-                    key={point}
-                    className="px-3 py-1.5 rounded-xl bg-stone-900/90 text-amber-300 text-xs border border-amber-500/25 font-medium flex items-center gap-1.5 shadow-sm"
-                  >
-                    <Sparkles className="w-3 h-3 text-orange-400 shrink-0" />
-                    <span>{point}</span>
-                  </span>
-                ))}
-              </div>
+            {/* Focal Points Pills */}
+            <div className="flex flex-wrap gap-2">
+              {selectedRegion.focalPoints.map((point) => (
+                <span
+                  key={point}
+                  className="px-3 py-1 rounded-full bg-white/[0.04] text-stone-300 text-xs border border-white/[0.06] flex items-center gap-1.5"
+                >
+                  <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span>{point}</span>
+                </span>
+              ))}
             </div>
 
-            {/* Reflection Documentaries on Selected State */}
-            <div className="pt-4 border-t border-stone-800">
-              <span className="text-xs uppercase font-bold tracking-widest text-amber-400 block mb-3.5">
-                Archival Documentaries on {selectedRegion.name}:
+            {/* Documentaries Row */}
+            <div className="pt-4 border-t border-white/[0.06] space-y-3">
+              <span className="text-xs font-semibold text-stone-400 block">
+                Related Documentaries:
               </span>
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {relatedVids.map((v) => (
                   <div
                     key={v.id}
                     onClick={() => onSelectVideo(v)}
-                    className="p-3 rounded-2xl glass-panel glass-panel-hover border border-stone-800 flex gap-3 cursor-pointer group"
+                    className="p-3 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.06] flex gap-3 cursor-pointer group transition-all"
                   >
-                    <div className="relative w-24 sm:w-28 aspect-video rounded-xl overflow-hidden shrink-0 bg-stone-950">
-                      <img
-                        src={v.thumbnail}
-                        alt={v.title}
-                        onError={(e) => { e.currentTarget.src = fallbackImage; }}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                      <div className="absolute bottom-1 right-1 px-1 py-0.5 rounded bg-black/80 text-[8px] font-mono text-stone-300">
-                        {v.duration}
-                      </div>
-                    </div>
-
-                    <div className="min-w-0 flex-1 flex flex-col justify-between py-0.5">
-                      <h5 className="font-bold text-xs text-stone-100 group-hover:text-amber-300 line-clamp-2 leading-snug transition-colors">
+                    <img
+                      src={v.thumbnail}
+                      alt={v.title}
+                      onError={(e) => { e.currentTarget.src = fallbackImage; }}
+                      className="w-20 h-14 object-cover rounded-lg shrink-0 group-hover:scale-105 transition-transform"
+                    />
+                    <div className="min-w-0 flex flex-col justify-between py-0.5">
+                      <h4 className="font-semibold text-xs text-stone-200 group-hover:text-amber-300 line-clamp-2">
                         {v.title}
-                      </h5>
-                      <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1">
-                        <span className="text-emerald-400/90 font-mono font-medium truncate mr-1">
-                          ✓ Verified
-                        </span>
-                        <span className="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-0.5 shrink-0">
-                          Watch <ArrowRight className="w-3 h-3" />
+                      </h4>
+                      <div className="flex items-center justify-between text-[10px] text-stone-500">
+                        <span>{v.duration}</span>
+                        <span className="text-amber-400 font-medium group-hover:translate-x-0.5 transition-transform">
+                          Watch →
                         </span>
                       </div>
                     </div>

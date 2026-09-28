@@ -91,7 +91,7 @@ export default function ShortsModal({
       <div className="relative flex items-center gap-4 sm:gap-6 w-full justify-center max-w-lg">
         
         {/* Vertical Reel Viewport (Responsive to screen height) */}
-        <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[85vh] max-h-[680px] rounded-3xl overflow-hidden bg-[#0a0a0c] border border-amber-500/30 shadow-2xl flex flex-col justify-between my-auto">
+        <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[85vh] max-h-[680px] rounded-3xl overflow-hidden bg-[#0a0a0c] border border-white/[0.08] shadow-2xl flex flex-col justify-between my-auto">
           
           {/* Background Reel Poster Image / Video Simulation */}
           <div className="absolute inset-0 z-0 bg-stone-950">
@@ -108,12 +108,12 @@ export default function ShortsModal({
           {/* Top Reel Info */}
           <div className="relative z-10 p-5 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-orange-500 animate-ping" />
-              <span className="text-[11px] font-mono tracking-wider uppercase text-amber-300 font-bold bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-amber-400" />
+              <span className="text-[10px] font-mono tracking-wider uppercase text-white font-medium bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
                 ⚡ Reflection Shorts
               </span>
             </div>
-            <span className="text-xs text-stone-300 font-mono bg-black/60 px-2 py-0.5 rounded">
+            <span className="text-[11px] text-stone-300 font-mono bg-black/60 px-2.5 py-1 rounded-full border border-white/10">
               {currentIndex + 1} / {shorts.length}
             </span>
           </div>
@@ -125,12 +125,12 @@ export default function ShortsModal({
               onClick={toggleLike}
               className="flex flex-col items-center gap-1 group"
             >
-              <div className={`w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md transition-transform active:scale-125 ${
-                isLiked ? 'bg-red-500 text-white' : 'bg-stone-900/80 text-stone-200 hover:text-red-400'
+              <div className={`w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md transition-transform active:scale-125 border border-white/10 ${
+                isLiked ? 'bg-red-500 text-white border-transparent' : 'bg-black/60 text-stone-200 hover:text-red-400'
               }`}>
                 <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
               </div>
-              <span className="text-[10px] font-bold text-stone-200">
+              <span className="text-[10px] font-mono text-stone-300">
                 {isLiked ? (currentShort.likes + 1).toLocaleString() : currentShort.likes.toLocaleString()}
               </span>
             </button>
@@ -140,10 +140,10 @@ export default function ShortsModal({
               onClick={() => setShowComments(!showComments)}
               className="flex flex-col items-center gap-1"
             >
-              <div className="w-11 h-11 rounded-full bg-stone-900/80 text-stone-200 hover:text-amber-400 flex items-center justify-center backdrop-blur-md">
+              <div className="w-11 h-11 rounded-full bg-black/60 border border-white/10 text-stone-200 hover:text-white flex items-center justify-center backdrop-blur-md">
                 <MessageSquare className="w-5 h-5" />
               </div>
-              <span className="text-[10px] font-bold text-stone-200">
+              <span className="text-[10px] font-mono text-stone-300">
                 {currentShort.comments.toLocaleString()}
               </span>
             </button>
@@ -156,10 +156,10 @@ export default function ShortsModal({
               }}
               className="flex flex-col items-center gap-1"
             >
-              <div className="w-11 h-11 rounded-full bg-stone-900/80 text-stone-200 hover:text-amber-400 flex items-center justify-center backdrop-blur-md">
+              <div className="w-11 h-11 rounded-full bg-black/60 border border-white/10 text-stone-200 hover:text-white flex items-center justify-center backdrop-blur-md">
                 <Share2 className="w-5 h-5" />
               </div>
-              <span className="text-[10px] font-bold text-stone-200">Share</span>
+              <span className="text-[10px] font-mono text-stone-300">Share</span>
             </button>
 
             {/* Save */}
@@ -167,31 +167,31 @@ export default function ShortsModal({
               onClick={() => onToggleSave(currentShort)}
               className="flex flex-col items-center gap-1"
             >
-              <div className={`w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md ${
-                isSaved ? 'bg-amber-500 text-stone-950' : 'bg-stone-900/80 text-stone-200 hover:text-amber-400'
+              <div className={`w-11 h-11 rounded-full flex items-center justify-center backdrop-blur-md border border-white/10 ${
+                isSaved ? 'bg-amber-400 text-black border-transparent' : 'bg-black/60 text-stone-200 hover:text-amber-400'
               }`}>
                 <Bookmark className="w-5 h-5 fill-current" />
               </div>
-              <span className="text-[10px] font-bold text-stone-200">Save</span>
+              <span className="text-[10px] font-mono text-stone-300">Save</span>
             </button>
           </div>
 
           {/* Bottom Narrative & "Watch Full Video" */}
           <div className="relative z-10 p-5 pr-16 space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-amber-300">
+              <span className="text-xs font-mono text-amber-300">
                 @{currentShort.author}
               </span>
-              <span className="text-[10px] text-stone-400">• {currentShort.views} views</span>
+              <span className="text-[10px] text-stone-400 font-mono">• {currentShort.views} views</span>
             </div>
 
-            <p className="text-sm font-semibold text-stone-100 leading-snug">
+            <p className="font-serif text-sm font-normal text-white leading-snug">
               {currentShort.title}
             </p>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
               {currentShort.tags.map(t => (
-                <span key={t} className="text-[10px] text-amber-400/90 font-mono">
+                <span key={t} className="text-[10px] text-amber-400/80 font-mono">
                   #{t}
                 </span>
               ))}
@@ -203,10 +203,10 @@ export default function ShortsModal({
                 onClose();
                 onWatchFullVideo(currentShort.fullVideoId);
               }}
-              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-orange-950/50 transition-all hover:scale-[1.02]"
+              className="w-full py-2.5 px-4 rounded-full bg-white hover:bg-stone-200 text-black font-semibold text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Watch Full Archival Documentary →</span>
+              <span>Watch Full Documentary</span>
             </button>
           </div>
 

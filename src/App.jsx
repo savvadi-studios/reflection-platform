@@ -147,53 +147,56 @@ export default function App() {
         />
 
         {/* 4. Reflection Shorts Reel Feed Grid */}
-        <section id="shorts" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-stone-800">
+        <section id="shorts" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/[0.06]">
             <div>
-              <div className="flex items-center gap-2 text-amber-500 font-semibold text-xs uppercase tracking-widest mb-1.5">
-                <Zap className="w-4 h-4 fill-amber-500" />
+              <div className="flex items-center gap-2 text-amber-400 font-mono text-[11px] tracking-widest uppercase mb-2">
+                <Zap className="w-3.5 h-3.5 fill-current" />
                 <span>Bite-sized Archival Insights</span>
               </div>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-extrabold text-stone-100 tracking-wide">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white font-serif">
                 Reflection Shorts
               </h2>
+              <p className="text-stone-400 text-xs sm:text-sm mt-2 max-w-xl leading-relaxed">
+                Vertical archival episodes and high-impact historical reveals designed for immediate clarity.
+              </p>
             </div>
-            <p className="text-xs text-stone-400 mt-2 sm:mt-0 font-mono">
-              Vertical Reels • Click to Enter Fullscreen Swipe Mode
+            <p className="text-[11px] text-stone-500 font-mono mt-3 md:mt-0">
+              Click to Enter Immersive Reels Player
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {shorts.map((s) => (
               <div
                 key={s.id}
                 onClick={() => openShort(s)}
-                className="group relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden glass-panel glass-panel-hover border border-stone-800 cursor-pointer flex flex-col justify-between p-3 sm:p-4"
+                className="group relative aspect-[9/16] rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between p-4 sm:p-5 hover:scale-[1.02] transition-all duration-300"
               >
                 <img
                   src={s.videoPoster}
                   alt={s.title}
                   onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'; }}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-0 bg-stone-950"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 z-0 bg-stone-950"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40 z-10" />
 
                 <div className="relative z-20 flex justify-between items-center">
-                  <span className="text-[10px] font-mono font-bold uppercase text-amber-300 bg-stone-950/80 px-2 py-0.5 rounded border border-stone-800">
+                  <span className="text-[10px] font-mono font-medium uppercase text-white bg-black/60 px-2.5 py-1 rounded-full border border-white/10 backdrop-blur-md">
                     ⚡ Short
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-orange-600/90 text-stone-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                     <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                   </div>
                 </div>
 
                 <div className="relative z-20 space-y-1.5">
-                  <p className="font-bold text-xs sm:text-sm text-stone-100 group-hover:text-amber-300 leading-snug line-clamp-2">
+                  <p className="font-serif text-white font-normal text-xs sm:text-sm group-hover:text-amber-200 leading-snug line-clamp-2">
                     {s.title}
                   </p>
-                  <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1">
-                    <span>@{s.author}</span>
-                    <span className="flex items-center gap-1">
+                  <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1 font-mono">
+                    <span className="text-stone-300">@{s.author}</span>
+                    <span className="flex items-center gap-1 text-stone-400">
                       <Eye className="w-3 h-3 text-amber-400" />
                       {s.views}
                     </span>

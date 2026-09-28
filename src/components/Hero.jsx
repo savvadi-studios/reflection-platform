@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Play, Flame, Compass, Sparkles, Shield, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Play, Compass, ChevronDown, ArrowRight } from 'lucide-react';
 
 export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending }) {
   const canvasRef = useRef(null);
@@ -19,15 +19,14 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
     };
     window.addEventListener('resize', handleResize);
 
-    // Particle embers and light dust
-    const particles = Array.from({ length: 65 }, () => ({
+    const particles = Array.from({ length: 45 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 2.5 + 0.8,
-      speedX: (Math.random() - 0.5) * 0.4,
-      speedY: -Math.random() * 0.6 - 0.2,
-      opacity: Math.random() * 0.7 + 0.2,
-      color: Math.random() > 0.4 ? 'rgba(245, 158, 11, ' : 'rgba(234, 88, 12, '
+      size: Math.random() * 2 + 0.6,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: -Math.random() * 0.5 - 0.15,
+      opacity: Math.random() * 0.6 + 0.2,
+      color: Math.random() > 0.5 ? 'rgba(245, 158, 11, ' : 'rgba(234, 88, 12, '
     }));
 
     const render = () => {
@@ -47,7 +46,7 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color + p.opacity + ')';
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 8;
         ctx.shadowColor = '#F97316';
         ctx.fill();
       });
@@ -64,113 +63,78 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
   }, []);
 
   return (
-    <div id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 bg-[#08080a]">
-      {/* Interactive Particle Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10 opacity-70" />
+    <div id="hero" className="relative min-h-[92vh] flex flex-col justify-center items-center overflow-hidden pt-28 pb-16 px-4">
+      {/* Subtle Dust Canvas */}
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10 opacity-60" />
 
-      {/* Cinematic Ambient Light Rays & Gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-gradient-to-b from-orange-600/25 via-amber-600/15 to-transparent rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute -top-32 left-1/4 w-[400px] h-[350px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[350px] bg-orange-950/20 rounded-full blur-[160px] pointer-events-none" />
+      {/* Ambient Radial Spotlight */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[400px] bg-gradient-to-b from-orange-600/20 via-amber-600/10 to-transparent rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Subtle Indian Geometric Mandala Motif in Background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.035] pointer-events-none">
-        <svg className="w-[850px] h-[850px] animate-spin" style={{ animationDuration: '180s' }} viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#F59E0B" strokeWidth="1" strokeDasharray="4 6" />
-          <circle cx="100" cy="100" r="70" fill="none" stroke="#F59E0B" strokeWidth="1" />
-          <polygon points="100,10 190,150 10,150" fill="none" stroke="#F59E0B" strokeWidth="1" />
-          <polygon points="100,190 10,50 190,50" fill="none" stroke="#F59E0B" strokeWidth="1" />
-        </svg>
-      </div>
-
-      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      {/* Content Container */}
+      <div className="relative z-20 max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
         
-        {/* Top Badge */}
-        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-stone-900/90 border border-amber-500/30 text-amber-300 text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.25em] font-semibold mb-6 sm:mb-8 shadow-lg shadow-orange-950/30 animate-in fade-in slide-in-from-bottom-3 duration-700 max-w-full truncate">
-          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400 shrink-0" />
-          <span className="truncate">Digital Media Platform • Knowledge Archive</span>
+        {/* Subtle Badge */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-amber-300 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-semibold">
+          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+          <span>Knowledge Archive • Digital Platform</span>
         </div>
 
-        {/* Hero Title - Guaranteed single line on every screen */}
-        <h1 
-          style={{ fontSize: 'clamp(2.2rem, 7.8vw, 6.2rem)' }}
-          className="font-cinzel font-black tracking-[0.06em] sm:tracking-[0.12em] uppercase text-stone-100 drop-shadow-2xl select-none leading-none whitespace-nowrap mx-auto"
-        >
-          REFLECT<span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent">ION</span>
-        </h1>
+        {/* Grand Headline: Guaranteed Single Line */}
+        <div className="space-y-2">
+          <h1 
+            style={{ fontSize: 'clamp(2.4rem, 8.5vw, 6.8rem)' }}
+            className="font-cinzel font-black tracking-[0.08em] sm:tracking-[0.16em] uppercase text-stone-100 select-none leading-none whitespace-nowrap drop-shadow-2xl"
+          >
+            REFLECT<span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent">ION</span>
+          </h1>
 
-        {/* Core Subtitle */}
-        <div className="mt-3 sm:mt-4 mb-2 sm:mb-3">
-          <p className="font-cinzel text-base sm:text-2xl md:text-3xl font-semibold tracking-[0.1em] sm:tracking-[0.16em] uppercase text-amber-200/90 italic">
-            "See Beyond the Surface."
+          <p className="font-cinzel text-base sm:text-xl md:text-2xl font-semibold tracking-[0.2em] uppercase text-amber-200/80 italic">
+            See Beyond the Surface.
           </p>
         </div>
 
         {/* Narrative Description */}
-        <p className="max-w-2xl mx-auto text-stone-300/80 text-xs sm:text-sm md:text-base font-normal leading-relaxed mt-3 sm:mt-4 mb-8 sm:mb-10 px-2">
-          Uncovering Indian history, civilizational roots, constitutional thought, and fearless discourse. 
-          Every claim cataloged with verified primary sources, declassified files, and transparent methodology.
+        <p className="max-w-xl mx-auto text-stone-400 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+          Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.
         </p>
 
-        {/* 3 Core Hero Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
-          {/* Watch Latest */}
+        {/* Clean, High-End Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
           <button
             onClick={onWatchLatest}
-            className="w-full sm:w-auto group relative px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 hover:from-orange-500 hover:to-amber-500 text-stone-950 font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-3 shadow-xl shadow-orange-700/30 hover:scale-[1.02] transition-all duration-300"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-stone-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg shadow-orange-950/40 hover:scale-105 transition-all duration-300"
           >
-            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-stone-950 text-amber-400 flex items-center justify-center group-hover:bg-stone-900 transition-colors shrink-0">
-              <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current ml-0.5" />
-            </div>
+            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
             <span>Watch Latest Release</span>
           </button>
 
-          {/* Trending */}
-          <button
-            onClick={onScrollTrending}
-            className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-stone-900/90 hover:bg-stone-800/90 text-stone-200 hover:text-amber-300 font-semibold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 border border-stone-800 hover:border-amber-500/40 shadow-lg hover:scale-[1.02] transition-all duration-300"
-          >
-            <Flame className="w-4 h-4 text-orange-500 shrink-0" />
-            <span>Trending This Week</span>
-          </button>
-
-          {/* Explore Archive */}
           <button
             onClick={onExploreArchive}
-            className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-amber-950/20 hover:bg-amber-950/40 text-amber-300 font-semibold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 border border-amber-600/30 hover:border-amber-500/60 shadow-lg hover:scale-[1.02] transition-all duration-300"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-stone-200 hover:text-amber-300 font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-white/[0.08] hover:border-amber-500/40 transition-all duration-300"
           >
-            <Compass className="w-4 h-4 text-amber-400 shrink-0" />
+            <Compass className="w-3.5 h-3.5 text-amber-400" />
             <span>Explore Knowledge Vault</span>
           </button>
         </div>
 
-        {/* Platform Stat Indicators */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto pt-8 sm:pt-10 border-t border-stone-800/60">
-          <div className="p-4 rounded-2xl glass-panel text-center">
-            <span className="block font-cinzel text-2xl font-bold text-amber-300">1,200+</span>
-            <span className="text-[11px] uppercase tracking-wider text-stone-400">Documented Hours</span>
-          </div>
-          <div className="p-4 rounded-2xl glass-panel text-center">
-            <div className="flex items-center justify-center gap-1">
-              <span className="font-cinzel text-2xl font-bold text-amber-400">100%</span>
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            </div>
-            <span className="text-[11px] uppercase tracking-wider text-stone-400">Primary Sources Cited</span>
-          </div>
-          <div className="p-4 rounded-2xl glass-panel text-center">
-            <span className="block font-cinzel text-2xl font-bold text-amber-300">28</span>
-            <span className="text-[11px] uppercase tracking-wider text-stone-400">States & UTs Covered</span>
-          </div>
-          <div className="p-4 rounded-2xl glass-panel text-center">
-            <span className="block font-cinzel text-2xl font-bold text-amber-400">4.5M+</span>
-            <span className="text-[11px] uppercase tracking-wider text-stone-400">Intellectual Thinkers</span>
-          </div>
+        {/* Refined Minimalist Ticker Line */}
+        <div className="pt-12 sm:pt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-[11px] sm:text-xs text-stone-500 font-mono">
+          <span>1,200+ Documented Hours</span>
+          <span className="hidden sm:inline opacity-30">•</span>
+          <span className="text-stone-400">100% Primary Archives Cited</span>
+          <span className="hidden sm:inline opacity-30">•</span>
+          <span>28 States & UTs Covered</span>
+          <span className="hidden sm:inline opacity-30">•</span>
+          <span className="text-amber-400/80">4.5M+ Intellectual Thinkers</span>
         </div>
 
       </div>
 
       {/* Subtle Scroll Down Prompt */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-stone-500 hover:text-amber-400 cursor-pointer animate-bounce z-20">
+      <div 
+        onClick={onScrollTrending}
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 text-stone-500 hover:text-amber-400 cursor-pointer animate-bounce z-20"
+      >
         <ChevronDown className="w-5 h-5" />
       </div>
     </div>

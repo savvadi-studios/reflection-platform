@@ -101,43 +101,43 @@ export default function ArchiveSearchModal({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-2xl flex items-start justify-center p-4 sm:p-6 pt-16 sm:pt-24 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-4xl rounded-3xl bg-[#0d0e12] border border-amber-500/30 shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-4xl rounded-3xl bg-[#0a0a0c] border border-white/[0.08] shadow-2xl overflow-hidden">
         
         {/* Search Input Bar */}
-        <div className="relative flex items-center px-6 py-5 border-b border-stone-800 bg-stone-950/80">
-          <Search className="w-6 h-6 text-amber-400 mr-3" />
+        <div className="relative flex items-center px-6 py-5 border-b border-white/[0.06] bg-black/40">
+          <Search className="w-5 h-5 text-stone-400 mr-3" />
           <input
             type="text"
             autoFocus
             placeholder="Search Reflection Knowledge Archive (e.g. Partition, Cholas, Constitution)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-transparent text-stone-100 placeholder:text-stone-500 text-base sm:text-lg outline-none font-medium"
+            className="w-full bg-transparent text-white placeholder:text-stone-500 text-base sm:text-lg outline-none font-normal"
           />
           {query && (
             <button 
               onClick={() => setQuery('')}
-              className="text-stone-400 hover:text-stone-200 mr-3 text-xs bg-stone-800 px-2 py-1 rounded"
+              className="text-stone-400 hover:text-white mr-3 text-xs bg-white/[0.06] px-2.5 py-1 rounded-full transition-colors"
             >
               Clear
             </button>
           )}
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-stone-900 text-stone-400 hover:text-stone-100 hover:bg-stone-800"
+            className="p-1.5 rounded-full bg-white/[0.04] text-stone-400 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Suggested Queries Chips */}
-        <div className="px-6 py-3 bg-stone-950/40 border-b border-stone-800/80 flex items-center gap-2 overflow-x-auto scrollbar-none">
-          <span className="text-[11px] uppercase font-bold tracking-wider text-stone-500 shrink-0">Popular:</span>
+        <div className="px-6 py-3 bg-white/[0.01] border-b border-white/[0.04] flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <span className="text-[10px] uppercase font-mono tracking-wider text-stone-500 shrink-0">Popular:</span>
           {suggestedQueries.map((s) => (
             <button
               key={s}
               onClick={() => setQuery(s)}
-              className="px-2.5 py-1 rounded-lg text-xs bg-stone-900/80 hover:bg-amber-500/20 text-stone-300 hover:text-amber-300 border border-stone-800 hover:border-amber-500/30 whitespace-nowrap transition-all"
+              className="px-3 py-1 rounded-full text-xs bg-white/[0.03] hover:bg-white/[0.08] text-stone-300 hover:text-white border border-white/[0.06] whitespace-nowrap transition-all"
             >
               {s}
             </button>
@@ -148,20 +148,20 @@ export default function ArchiveSearchModal({
         <div className="max-h-[65vh] overflow-y-auto p-6 space-y-6">
           {!query ? (
             <div className="py-12 text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto">
-                <Database className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.08] text-amber-400 flex items-center justify-center mx-auto">
+                <Database className="w-5 h-5" />
               </div>
-              <h3 className="font-cinzel text-lg font-bold text-stone-200">
-                Reflection Universal Knowledge Index
+              <h3 className="font-serif text-lg font-light text-white">
+                Universal Knowledge Index
               </h3>
-              <p className="text-xs text-stone-400 max-w-md mx-auto leading-relaxed">
-                Type any civilizational event, state, declassified file, or thinker to search cross-referenced videos, articles, and citations.
+              <p className="text-xs text-stone-400 max-w-md mx-auto leading-relaxed font-light">
+                Search across documentaries, primary sources, scholarly essays, and verified archival claims.
               </p>
             </div>
           ) : totalResults === 0 ? (
             <div className="py-12 text-center text-stone-400">
-              <p className="text-sm">No archive items matched "{query}".</p>
-              <p className="text-xs text-stone-500 mt-1">Try searching for keywords like "Constitution", "1947", "Chola", or "Hyderabad".</p>
+              <p className="text-sm font-light">No archive items matched "{query}".</p>
+              <p className="text-xs text-stone-500 mt-1 font-light">Try searching for keywords like "Constitution", "1947", "Chola", or "Hyderabad".</p>
             </div>
           ) : (
             <>
@@ -169,8 +169,8 @@ export default function ArchiveSearchModal({
               {matchedVideos.length > 0 && (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                      <Play className="w-3.5 h-3.5 fill-amber-400" />
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                      <Play className="w-3 h-3 fill-current" />
                       Documentaries & Videos ({matchedVideos.length})
                     </span>
                   </div>
@@ -182,15 +182,15 @@ export default function ArchiveSearchModal({
                           onSelectVideo(v);
                           onClose();
                         }}
-                        className="p-3 rounded-xl glass-panel glass-panel-hover border border-stone-800 flex gap-3 cursor-pointer group"
+                        className="p-3.5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] flex gap-3.5 cursor-pointer group transition-all"
                       >
-                        <img src={v.thumbnail} alt={v.title} className="w-20 h-14 object-cover rounded-lg shrink-0" />
+                        <img src={v.thumbnail} alt={v.title} className="w-20 h-14 object-cover rounded-xl shrink-0" />
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-xs font-bold text-stone-100 group-hover:text-amber-300 truncate">
+                          <h4 className="text-xs font-normal text-white group-hover:text-amber-200 truncate">
                             {v.title}
                           </h4>
-                          <p className="text-[11px] text-stone-400 mt-0.5">{v.speaker}</p>
-                          <span className="text-[10px] text-amber-500/80 font-mono">{v.duration}</span>
+                          <p className="text-[11px] text-stone-400 mt-0.5 font-light">{v.speaker}</p>
+                          <span className="text-[10px] text-stone-500 font-mono">{v.duration}</span>
                         </div>
                       </div>
                     ))}
@@ -200,9 +200,9 @@ export default function ArchiveSearchModal({
 
               {/* ARTICLES MATCHED */}
               {matchedArticles.length > 0 && (
-                <div className="space-y-3 pt-3 border-t border-stone-800">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+                <div className="space-y-3 pt-3 border-t border-white/[0.06]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-stone-400 flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5" />
                     Editorial Stories ({matchedArticles.length})
                   </span>
                   <div className="space-y-2">
@@ -213,15 +213,15 @@ export default function ArchiveSearchModal({
                           onSelectArticle(a);
                           onClose();
                         }}
-                        className="p-3 rounded-xl glass-panel glass-panel-hover border border-stone-800 flex items-center justify-between cursor-pointer group"
+                        className="p-3.5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] flex items-center justify-between cursor-pointer group transition-all"
                       >
                         <div>
-                          <h4 className="text-xs font-bold text-stone-100 group-hover:text-amber-300">
+                          <h4 className="text-xs font-normal text-white group-hover:text-amber-200">
                             {a.title}
                           </h4>
-                          <p className="text-[11px] text-stone-400 line-clamp-1 mt-0.5">{a.summary}</p>
+                          <p className="text-[11px] text-stone-400 line-clamp-1 mt-0.5 font-light">{a.summary}</p>
                         </div>
-                        <ArrowRight className="w-4 h-4 text-stone-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all shrink-0 ml-3" />
+                        <ArrowRight className="w-4 h-4 text-stone-500 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 ml-3" />
                       </div>
                     ))}
                   </div>
@@ -230,9 +230,9 @@ export default function ArchiveSearchModal({
 
               {/* SHORTS MATCHED */}
               {matchedShorts.length > 0 && (
-                <div className="space-y-3 pt-3 border-t border-stone-800">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5 fill-amber-400" />
+                <div className="space-y-3 pt-3 border-t border-white/[0.06]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                    <Zap className="w-3 h-3 fill-current" />
                     Shorts ({matchedShorts.length})
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -243,14 +243,14 @@ export default function ArchiveSearchModal({
                           onSelectShort(s);
                           onClose();
                         }}
-                        className="p-2.5 rounded-xl glass-panel glass-panel-hover border border-stone-800 flex items-center gap-3 cursor-pointer group"
+                        className="p-2.5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] flex items-center gap-3 cursor-pointer group transition-all"
                       >
-                        <img src={s.videoPoster} alt={s.title} className="w-10 h-14 object-cover rounded-lg shrink-0" />
+                        <img src={s.videoPoster} alt={s.title} className="w-10 h-14 object-cover rounded-xl shrink-0" />
                         <div className="min-w-0">
-                          <p className="text-xs font-semibold text-stone-200 group-hover:text-amber-300 line-clamp-2">
+                          <p className="text-xs font-normal text-white group-hover:text-amber-200 line-clamp-2">
                             {s.title}
                           </p>
-                          <span className="text-[10px] text-stone-500">{s.views} views</span>
+                          <span className="text-[10px] text-stone-500 font-mono">{s.views} views</span>
                         </div>
                       </div>
                     ))}
@@ -260,19 +260,19 @@ export default function ArchiveSearchModal({
 
               {/* PRIMARY SOURCES MATCHED */}
               {matchedSources.length > 0 && (
-                <div className="space-y-3 pt-3 border-t border-stone-800">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                <div className="space-y-3 pt-3 border-t border-white/[0.06]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    Verified Primary Sources & Historical Records ({matchedSources.length})
+                    Verified Primary Sources ({matchedSources.length})
                   </span>
                   <div className="space-y-2">
                     {matchedSources.map((src, i) => (
-                      <div key={i} className="p-3 rounded-xl bg-stone-900/60 border border-stone-800 text-xs">
-                        <div className="flex items-center justify-between text-[10px] text-amber-400 mb-1">
-                          <span className="font-semibold">{src.videoTitle}</span>
-                          <span className="bg-stone-800 px-2 py-0.5 rounded text-stone-300 font-mono">{src.badge}</span>
+                      <div key={i} className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.05] text-xs">
+                        <div className="flex items-center justify-between text-[10px] text-stone-400 mb-1">
+                          <span className="font-medium text-stone-300">{src.videoTitle}</span>
+                          <span className="bg-white/[0.05] px-2 py-0.5 rounded-full text-stone-400 font-mono">{src.badge}</span>
                         </div>
-                        <p className="text-stone-300 font-medium italic">"{src.claim}"</p>
+                        <p className="text-white font-light italic">"{src.claim}"</p>
                         <p className="text-emerald-400/90 font-mono text-[11px] mt-1">Citation: {src.source}</p>
                       </div>
                     ))}

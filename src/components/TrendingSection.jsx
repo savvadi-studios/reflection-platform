@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Play, BookOpen, Zap, ArrowRight, Eye, CheckCircle2 } from 'lucide-react';
+import { Flame, Play, BookOpen, Zap, ArrowRight, Eye } from 'lucide-react';
 
 export default function TrendingSection({ 
   videos, 
@@ -57,76 +57,65 @@ export default function TrendingSection({
   ];
 
   return (
-    <section id="trending" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-stone-800">
+    <section id="trending" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
+      {/* Sleek Minimalist Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-white/[0.06]">
         <div>
-          <div className="flex items-center gap-2 text-orange-500 font-semibold text-xs uppercase tracking-widest mb-1.5">
-            <Flame className="w-4 h-4 fill-orange-500" />
-            <span>High Engagement Velocity</span>
-          </div>
-          <h2 className="font-cinzel text-3xl sm:text-4xl font-extrabold text-stone-100 tracking-wide">
-            Trending on Reflection
+          <span className="text-[10px] font-mono tracking-widest uppercase text-orange-400 block mb-1">
+            Real-time Telemetry
+          </span>
+          <h2 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-stone-100">
+            Trending This Week
           </h2>
         </div>
-        <p className="text-stone-400 text-xs sm:text-sm mt-2 md:mt-0 max-w-md text-left md:text-right">
-          Ranked dynamically across documentaries, scholarly stories, and archival dispatches.
-        </p>
+        <span className="text-xs text-stone-400 mt-2 sm:mt-0 font-normal">
+          Ranked by verified archival view velocity
+        </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {/* Grid of 4 Minimalist Cinematic Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {trendingList.map((item) => (
           <div
             key={item.rank}
             onClick={item.handler}
-            className="group relative rounded-2xl overflow-hidden glass-panel glass-panel-hover border border-stone-800/80 cursor-pointer flex flex-col justify-between"
+            className="group rounded-2xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between"
           >
-            {/* Thumbnail Header with Rank */}
-            <div className="relative h-44 sm:h-48 overflow-hidden bg-stone-950">
+            {/* Poster */}
+            <div className="relative aspect-[16/10] overflow-hidden bg-stone-950">
               <img
                 src={item.thumbnail}
                 alt={item.title}
                 onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80'; }}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d10] via-transparent to-black/40" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e12] via-transparent to-black/30" />
 
-              {/* Huge Cinematic Rank Overlay */}
-              <span className="absolute top-2 left-3 font-cinzel text-5xl font-black text-white/30 drop-shadow-md select-none group-hover:text-amber-400/60 transition-colors">
-                {item.rank}
-              </span>
+              {/* Minimal Rank Pill */}
+              <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md border border-white/[0.08] text-xs font-mono font-bold text-amber-300">
+                #{item.rank}
+              </div>
 
               {/* Type Badge */}
-              <div className="absolute top-3 right-3">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-stone-900/90 text-amber-300 border border-amber-500/30 backdrop-blur-md">
-                  {item.type === 'video' && <Play className="w-3 h-3 fill-amber-400" />}
-                  {item.type === 'short' && <Zap className="w-3 h-3 fill-amber-400" />}
-                  {item.type === 'article' && <BookOpen className="w-3 h-3 text-amber-400" />}
+              <div className="absolute top-2.5 right-2.5">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-black/70 text-stone-300 border border-white/[0.08] backdrop-blur-md">
+                  {item.type === 'video' && <Play className="w-2.5 h-2.5 fill-amber-400" />}
+                  {item.type === 'short' && <Zap className="w-2.5 h-2.5 fill-amber-400" />}
+                  {item.type === 'article' && <BookOpen className="w-2.5 h-2.5 text-amber-400" />}
                   <span>{item.type}</span>
                 </span>
               </div>
-
-              {/* Engagement Stat */}
-              <div className="absolute bottom-2 left-3 flex items-center gap-1.5 text-[11px] text-stone-300 bg-stone-950/80 px-2 py-0.5 rounded-md border border-stone-800">
-                <Eye className="w-3 h-3 text-amber-400" />
-                <span>{item.views}</span>
-              </div>
             </div>
 
-            {/* Content Body */}
-            <div className="p-4 flex-1 flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] font-semibold text-amber-400/90 uppercase tracking-widest">
-                  {item.badge}
-                </span>
-                <h3 className="font-sans font-bold text-stone-100 text-sm mt-1 leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
-                  {item.title}
-                </h3>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-stone-800/80 flex items-center justify-between text-xs text-stone-400">
-                <span>{item.meta}</span>
-                <span className="flex items-center gap-1 text-amber-400 font-semibold group-hover:translate-x-1 transition-transform">
-                  View <ArrowRight className="w-3.5 h-3.5" />
+            {/* Info */}
+            <div className="p-4 space-y-2">
+              <h3 className="font-semibold text-stone-100 text-xs sm:text-sm leading-snug line-clamp-2 group-hover:text-amber-300 transition-colors">
+                {item.title}
+              </h3>
+              <div className="flex items-center justify-between text-[11px] text-stone-400 pt-1">
+                <span>{item.views}</span>
+                <span className="text-amber-400/80 font-medium group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                  View →
                 </span>
               </div>
             </div>
