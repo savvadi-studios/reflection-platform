@@ -3,10 +3,8 @@ import { Flame, Play, BookOpen, Zap, ArrowRight, Eye } from 'lucide-react';
 
 export default function TrendingSection({ 
   videos, 
-  articles, 
   shorts, 
   onSelectVideo, 
-  onSelectArticle, 
   onSelectShort 
 }) {
   const trendingList = [
@@ -45,14 +43,14 @@ export default function TrendingSection({
     },
     {
       rank: '04',
-      type: 'article',
-      title: articles[0]?.title || 'The Myth of the Lazy Native',
-      views: '420K Reads',
-      meta: '9 min read • Research Desk',
-      badge: 'Sociological Paper',
-      thumbnail: articles[0]?.image,
-      raw: articles[0],
-      handler: () => onSelectArticle(articles[0])
+      type: 'video',
+      title: videos[1]?.title || 'How the Indian Constitution Was Really Written',
+      views: videos[1]?.views || '980K',
+      meta: '54 min • Constitutional Study',
+      badge: 'Assembly Debates',
+      thumbnail: videos[1]?.thumbnail,
+      raw: videos[1],
+      handler: () => onSelectVideo(videos[1])
     }
   ];
 

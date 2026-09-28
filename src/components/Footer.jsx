@@ -8,7 +8,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-export default function Footer({ onOpenSearch }) {
+export default function Footer({ onOpenSearch, onOpenDashboard }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -99,26 +99,32 @@ export default function Footer({ onOpenSearch }) {
           {/* Quick Navigation */}
           <div>
             <h4 className="text-[11px] uppercase font-mono tracking-widest text-stone-400 mb-4">
-              Knowledge Vault
+              Knowledge Platform
             </h4>
             <ul className="space-y-2.5 text-xs text-stone-400 font-light">
               <li><a href="#videos" className="hover:text-white transition-colors">Video Documentary Hub</a></li>
-              <li><a href="#archive" className="hover:text-white transition-colors">Declassified Archive Index</a></li>
+              <li><a href="#trending" className="hover:text-white transition-colors">Trending Vault</a></li>
+              <li><a href="#shorts" className="hover:text-white transition-colors">Vertical Archival Shorts</a></li>
               <li><a href="#india" className="hover:text-white transition-colors">Interactive India Map</a></li>
-              <li><a href="#timeline" className="hover:text-white transition-colors">5-Epoch History Timeline</a></li>
-              <li><a href="#stories" className="hover:text-white transition-colors">Reflection Editorial Stories</a></li>
             </ul>
           </div>
 
-          {/* Audio & Media */}
+          {/* Management & Operations */}
           <div>
             <h4 className="text-[11px] uppercase font-mono tracking-widest text-stone-400 mb-4">
-              Formats & Dialogue
+              Studio & Tools
             </h4>
             <ul className="space-y-2.5 text-xs text-stone-400 font-light">
-              <li><a href="#podcasts" className="hover:text-white transition-colors">Reflection Podcasts (Spotify)</a></li>
-              <li><a href="#shorts" className="hover:text-white transition-colors">Vertical Archival Shorts</a></li>
+              <li>
+                <button 
+                  onClick={onOpenDashboard} 
+                  className="hover:text-amber-300 transition-colors text-left font-mono text-amber-400/90 flex items-center gap-1.5"
+                >
+                  <span>⚡ Studio Dashboard (CMS)</span>
+                </button>
+              </li>
               <li><button onClick={onOpenSearch} className="hover:text-white transition-colors text-left">Search Universal Database</button></li>
+              <li><a href="#videos" className="hover:text-white transition-colors">Primary Archives Index</a></li>
             </ul>
           </div>
 

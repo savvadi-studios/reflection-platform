@@ -60,15 +60,6 @@ export default function ArchiveSearchModal({
       )
     : [];
 
-  const matchedArticles = q
-    ? articles.filter(
-        a =>
-          a.title.toLowerCase().includes(q) ||
-          a.summary.toLowerCase().includes(q) ||
-          a.content.toLowerCase().includes(q)
-      )
-    : [];
-
   const matchedShorts = q
     ? shorts.filter(
         s =>
@@ -97,7 +88,7 @@ export default function ArchiveSearchModal({
     });
   }
 
-  const totalResults = matchedVideos.length + matchedArticles.length + matchedShorts.length + matchedSources.length;
+  const totalResults = matchedVideos.length + matchedShorts.length + matchedSources.length;
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-2xl flex items-start justify-center p-4 sm:p-6 pt-16 sm:pt-24 animate-in fade-in duration-200">
@@ -192,36 +183,6 @@ export default function ArchiveSearchModal({
                           <p className="text-[11px] text-stone-400 mt-0.5 font-light">{v.speaker}</p>
                           <span className="text-[10px] text-stone-500 font-mono">{v.duration}</span>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* ARTICLES MATCHED */}
-              {matchedArticles.length > 0 && (
-                <div className="space-y-3 pt-3 border-t border-white/[0.06]">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-stone-400 flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5" />
-                    Editorial Stories ({matchedArticles.length})
-                  </span>
-                  <div className="space-y-2">
-                    {matchedArticles.map((a) => (
-                      <div
-                        key={a.id}
-                        onClick={() => {
-                          onSelectArticle(a);
-                          onClose();
-                        }}
-                        className="p-3.5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] flex items-center justify-between cursor-pointer group transition-all"
-                      >
-                        <div>
-                          <h4 className="text-xs font-normal text-white group-hover:text-amber-200">
-                            {a.title}
-                          </h4>
-                          <p className="text-[11px] text-stone-400 line-clamp-1 mt-0.5 font-light">{a.summary}</p>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-stone-500 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 ml-3" />
                       </div>
                     ))}
                   </div>

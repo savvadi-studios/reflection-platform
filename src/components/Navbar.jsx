@@ -3,7 +3,7 @@ import {
   Search, 
   Bookmark, 
   Bell, 
-  ShieldCheck, 
+  LayoutDashboard, 
   Menu, 
   X
 } from 'lucide-react';
@@ -11,7 +11,7 @@ import {
 export default function Navbar({ 
   onOpenSearch, 
   onOpenBookmarks, 
-  onOpenAdmin, 
+  onOpenDashboard, 
   savedCount = 0,
   activeSection,
   setActiveSection 
@@ -22,26 +22,22 @@ export default function Navbar({
 
   const notifications = [
     { id: 1, title: 'Archival Vault Updated', desc: 'Declassified 1947 Cabinet Minutes uploaded', time: '10m ago' },
-    { id: 2, title: 'Podcast Live', desc: 'Ep. 48: De-dollarization & India Century streaming now', time: '1h ago' },
+    { id: 2, title: 'Studio Live', desc: 'New viral short published on the live feed', time: '1h ago' },
   ];
 
   const navItems = [
     { id: 'hero', label: 'Home' },
-    { id: 'videos', label: 'Watch' },
     { id: 'trending', label: 'Trending' },
-    { id: 'india', label: 'India' },
-    { id: 'timeline', label: 'Timeline' },
-    { id: 'archive', label: 'Archive' },
-    { id: 'stories', label: 'Stories' },
-    { id: 'podcasts', label: 'Podcasts' },
+    { id: 'videos', label: 'Watch' },
     { id: 'shorts', label: 'Shorts' },
+    { id: 'india', label: 'India' },
   ];
 
   // Scroll spy & background blur transition
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
-      const sections = ['hero', 'trending', 'videos', 'india', 'timeline', 'archive', 'stories', 'podcasts', 'shorts'];
+      const sections = ['hero', 'trending', 'videos', 'shorts', 'india'];
       const scrollPos = window.scrollY + 180;
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -169,13 +165,14 @@ export default function Navbar({
               )}
             </button>
 
-            {/* Admin CMS */}
+            {/* Studio Dashboard Button */}
             <button
-              onClick={onOpenAdmin}
-              className="hidden md:flex p-2 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-stone-400 hover:text-amber-300 border border-white/[0.06] transition-all"
-              title="Admin Dashboard"
+              onClick={onOpenDashboard}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-black font-semibold text-xs tracking-wider uppercase hover:bg-stone-200 transition-all shadow-md hover:scale-[1.02] active:scale-[0.98]"
+              title="Open Reflection Studio Dashboard"
             >
-              <ShieldCheck className="w-3.5 h-3.5" />
+              <LayoutDashboard className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Dashboard</span>
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -205,6 +202,20 @@ export default function Navbar({
                 <span className="text-stone-500 text-xs">→</span>
               </button>
             ))}
+            
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenDashboard();
+              }}
+              className="w-full text-left px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-white text-black flex items-center justify-between mt-2"
+            >
+              <span className="flex items-center gap-2">
+                <LayoutDashboard className="w-4 h-4" />
+                <span>Studio Dashboard</span>
+              </span>
+              <span>→</span>
+            </button>
           </div>
         )}
       </div>

@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { Play, Compass, ChevronDown, ArrowRight } from 'lucide-react';
 
-export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending }) {
+export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending, settings = {} }) {
   const canvasRef = useRef(null);
+  
+  const heroTagline = settings.heroTagline || 'See Beyond the Surface.';
+  const heroDescription = settings.heroDescription || 'Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.';
+  const tickerText = settings.announcementTicker || '1,200+ Documented Hours • 100% Primary Archives Cited • 28 States & UTs Covered • 4.5M+ Intellectual Thinkers';
+  const tickerItems = tickerText.split('•').map(t => t.trim());
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -89,13 +94,13 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
           </h1>
 
           <p className="font-cinzel text-base sm:text-xl md:text-2xl font-semibold tracking-[0.2em] uppercase text-amber-200/80 italic">
-            See Beyond the Surface.
+            {heroTagline}
           </p>
         </div>
 
         {/* Narrative Description */}
         <p className="max-w-xl mx-auto text-stone-400 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
-          Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.
+          {heroDescription}
         </p>
 
         {/* Clean, High-End Action Buttons */}
@@ -118,14 +123,13 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
         </div>
 
         {/* Refined Minimalist Ticker Line */}
-        <div className="pt-12 sm:pt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-[11px] sm:text-xs text-stone-500 font-mono">
-          <span>1,200+ Documented Hours</span>
-          <span className="hidden sm:inline opacity-30">•</span>
-          <span className="text-stone-400">100% Primary Archives Cited</span>
-          <span className="hidden sm:inline opacity-30">•</span>
-          <span>28 States & UTs Covered</span>
-          <span className="hidden sm:inline opacity-30">•</span>
-          <span className="text-amber-400/80">4.5M+ Intellectual Thinkers</span>
+        <div className="pt-12 sm:pt-16 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-stone-500 font-mono">
+          {tickerItems.map((item, idx) => (
+            <React.Fragment key={idx}>
+              <span className={idx % 2 === 1 ? 'text-stone-300' : 'text-stone-500'}>{item}</span>
+              {idx < tickerItems.length - 1 && <span className="opacity-30">•</span>}
+            </React.Fragment>
+          ))}
         </div>
 
       </div>

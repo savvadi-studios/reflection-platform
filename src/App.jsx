@@ -6,36 +6,67 @@ import VideoHub from './components/VideoHub';
 import VideoModal from './components/VideoModal';
 import ArchiveSearchModal from './components/ArchiveSearchModal';
 import InteractiveIndia from './components/InteractiveIndia';
-import TimelineSection from './components/TimelineSection';
-import KnowTheSourceSection from './components/KnowTheSourceSection';
-import PodcastsSection from './components/PodcastsSection';
-import ArticlesSection from './components/ArticlesSection';
 import ShortsModal from './components/ShortsModal';
-import AdminDashboardModal from './components/AdminDashboardModal';
 import MyReflectionModal from './components/MyReflectionModal';
 import Footer from './components/Footer';
+import DashboardPage from './pages/DashboardPage';
 
 import { 
   VIDEOS as initialVideos, 
-  ARTICLES, 
-  SHORTS 
+  SHORTS as initialShorts 
 } from './data/reflectionData';
-import { Zap, Play, Eye, Sparkles } from 'lucide-react';
+import { Zap, Play, Eye } from 'lucide-react';
 
 export default function App() {
-  const [videos, setVideos] = useState(initialVideos);
-  const [articles] = useState(ARTICLES);
-  const [shorts] = useState(SHORTS);
+  // Routing: 'home' or 'dashboard'
+  const [route, setRoute] = useState(() => {
+    const hash = window.location.hash;
+    const path = window.location.pathname;
+    if (hash === '#dashboard' || hash === '#/dashboard' || path === '/dashboard') {
+      return 'dashboard';
+    }
+    return 'home';
+  });
 
-  // Modals state
-  const [selectedVideo, setSelectedVideo] = useState(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [adminOpen, setAdminOpen] = useState(false);
-  const [bookmarksOpen, setBookmarksOpen] = useState(false);
-  const [shortsModalOpen, setShortsModalOpen] = useState(false);
-  const [activeShort, setActiveShort] = useState(null);
+  // Persistent Platform State across App & Dashboard
+  const [videos, setVideos] = useState(() => {
+    try {
+      const local = localStorage.getItem('reflection_videos');
+      return local ? JSON.parse(local) : initialVideos;
+    } catch {
+      return initialVideos;
+    }
+  });
 
-  // Saved items in localStorage
+  const [shorts, setShorts] = useState(() => {
+    try {
+      const local = localStorage.getItem('reflection_shorts');
+      return local ? JSON.parse(local) : initialShorts;
+    } catch {
+      return initialShorts;
+    }
+  });
+
+  const [settings, setSettings] = useState(() => {
+    try {
+      const local = localStorage.getItem('reflection_settings');
+      return local ? JSON.parse(local) : {
+        announcementTicker: '1,200+ Documented Hours • 100% Primary Archives Cited • 28 States & UTs Covered • 4.5M+ Intellectual Thinkers',
+        heroTagline: 'See Beyond the Surface.',
+        heroDescription: 'Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.',
+        broadcastBanner: ''
+      };
+    } catch {
+      return {
+        announcementTicker: '1,200+ Documented Hours • 100% Primary Archives Cited • 28 States & UTs Covered • 4.5M+ Intellectual Thinkers',
+        heroTagline: 'See Beyond the Surface.',
+        heroDescription: 'Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.',
+        broadcastBanner: ''
+      };
+    }
+  });
+
+  // Saved bookmarks
   const [savedItems, setSavedItems] = useState(() => {
     try {
       const local = localStorage.getItem('reflection_saved_items');
@@ -45,9 +76,59 @@ export default function App() {
     }
   });
 
+  // Modals state
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [bookmarksOpen, setBookmarksOpen] = useState(false);
+  const [shortsModalOpen, setShortsModalOpen] = useState(false);
+  const [activeShort, setActiveShort] = useState(null);
   const [activeSection, setActiveSection] = useState('hero');
 
-  // Sync saved items to localStorage
+  // URL Hash & Popstate Listener for #dashboard
+  useEffect(() => {
+    const handleRouteChange = () => {
+      const hash = window.location.hash;
+      const path = window.location.pathname;
+      if (hash === '#dashboard' || hash === '#/dashboard' || path === '/dashboard') {
+        setRoute('dashboard');
+      } else {
+        setRoute('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleRouteChange);
+    window.addEventListener('popstate', handleRouteChange);
+    return () => {
+      window.removeEventListener('hashchange', handleRouteChange);
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
+
+  // Save changes to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('reflection_videos', JSON.stringify(videos));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [videos]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('reflection_shorts', JSON.stringify(shorts));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [shorts]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('reflection_settings', JSON.stringify(settings));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [settings]);
+
   useEffect(() => {
     try {
       localStorage.setItem('reflection_saved_items', JSON.stringify(savedItems));
@@ -68,6 +149,37 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const navigateToDashboard = () => {
+    window.location.hash = 'dashboard';
+    setRoute('dashboard');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToHome = () => {
+    if (window.location.hash === '#dashboard' || window.location.hash === '#/dashboard') {
+      window.location.hash = '';
+    }
+    if (window.location.pathname === '/dashboard') {
+      window.history.pushState(null, '', '/');
+    }
+    setRoute('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleResetDefaults = () => {
+    setVideos(initialVideos);
+    setShorts(initialShorts);
+    setSettings({
+      announcementTicker: '1,200+ Documented Hours • 100% Primary Archives Cited • 28 States & UTs Covered • 4.5M+ Intellectual Thinkers',
+      heroTagline: 'See Beyond the Surface.',
+      heroDescription: 'Indian history, civilizational roots, constitutional thought, and fearless discourse — indexed with declassified primary sources and archival transparency.',
+      broadcastBanner: ''
+    });
+    localStorage.removeItem('reflection_videos');
+    localStorage.removeItem('reflection_shorts');
+    localStorage.removeItem('reflection_settings');
+  };
+
   const handleToggleSave = (item) => {
     setSavedItems((prev) => {
       const exists = prev.some((i) => i.id === item.id);
@@ -83,10 +195,6 @@ export default function App() {
     setSavedItems(prev => prev.filter(i => i.id !== id));
   };
 
-  const handleAddVideo = (newVid) => {
-    setVideos([newVid, ...videos]);
-  };
-
   const openShort = (short) => {
     setActiveShort(short);
     setShortsModalOpen(true);
@@ -100,16 +208,32 @@ export default function App() {
   };
 
   const savedVideoIds = savedItems.filter(i => i.id.startsWith('vid-')).map(i => i.id);
-  const savedArticleIds = savedItems.filter(i => i.id.startsWith('art-')).map(i => i.id);
 
+  // If on Dashboard page, render dedicated Dashboard Page
+  if (route === 'dashboard') {
+    return (
+      <DashboardPage
+        videos={videos}
+        setVideos={setVideos}
+        shorts={shorts}
+        setShorts={setShorts}
+        settings={settings}
+        setSettings={setSettings}
+        onNavigateHome={navigateToHome}
+        onResetDefaults={handleResetDefaults}
+      />
+    );
+  }
+
+  // Otherwise, render Public Website (without Timeline, Know the Source, Podcasts, Stories)
   return (
-    <div className="min-h-screen bg-[#08080a] text-[#ede8df] selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen bg-[#060608] text-[#ede8df] selection:bg-amber-400/30 selection:text-amber-200">
       
-      {/* Primary Navigation Bar */}
+      {/* Primary Floating Navigation Bar */}
       <Navbar
         onOpenSearch={() => setSearchOpen(true)}
         onOpenBookmarks={() => setBookmarksOpen(true)}
-        onOpenAdmin={() => setAdminOpen(true)}
+        onOpenDashboard={navigateToDashboard}
         savedCount={savedItems.length}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
@@ -123,18 +247,14 @@ export default function App() {
           onScrollTrending={() => {
             document.getElementById('trending')?.scrollIntoView({ behavior: 'smooth' });
           }}
+          settings={settings}
         />
 
         {/* 2. Trending on Reflection */}
         <TrendingSection
           videos={videos}
-          articles={articles}
           shorts={shorts}
           onSelectVideo={setSelectedVideo}
-          onSelectArticle={(art) => {
-            // scroll to stories or open
-            document.getElementById('stories')?.scrollIntoView({ behavior: 'smooth' });
-          }}
           onSelectShort={openShort}
         />
 
@@ -207,38 +327,18 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. Know the Source Transparency Engine */}
-        <KnowTheSourceSection
-          onSearchSource={(query) => {
-            setSearchOpen(true);
-          }}
-        />
-
-        {/* 6. Interactive India Cartography & State Explorer */}
+        {/* 5. Interactive India Cartography & State Explorer */}
         <InteractiveIndia
           videos={videos}
           onSelectVideo={setSelectedVideo}
         />
-
-        {/* 7. Interactive Timeline of 5 Eras */}
-        <TimelineSection
-          onExploreTopic={(era) => {
-            setSearchOpen(true);
-          }}
-        />
-
-        {/* 8. Reflection Podcasts */}
-        <PodcastsSection />
-
-        {/* 9. Reflection Editorial Stories */}
-        <ArticlesSection
-          onToggleSave={handleToggleSave}
-          savedArticleIds={savedArticleIds}
-        />
       </main>
 
       {/* Footer */}
-      <Footer onOpenSearch={() => setSearchOpen(true)} />
+      <Footer 
+        onOpenSearch={() => setSearchOpen(true)} 
+        onOpenDashboard={navigateToDashboard}
+      />
 
       {/* MODALS */}
       {/* 1. Deep Video Player & Citation Modal */}
@@ -258,12 +358,8 @@ export default function App() {
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
         videos={videos}
-        articles={articles}
         shorts={shorts}
         onSelectVideo={setSelectedVideo}
-        onSelectArticle={(art) => {
-          document.getElementById('stories')?.scrollIntoView({ behavior: 'smooth' });
-        }}
         onSelectShort={openShort}
       />
 
@@ -278,14 +374,7 @@ export default function App() {
         isSaved={activeShort ? savedItems.some(i => i.id === activeShort.id) : false}
       />
 
-      {/* 4. Admin CMS Dashboard */}
-      <AdminDashboardModal
-        isOpen={adminOpen}
-        onClose={() => setAdminOpen(false)}
-        onAddVideo={handleAddVideo}
-      />
-
-      {/* 5. My Reflection Bookmarks Modal */}
+      {/* 4. My Reflection Bookmarks Modal */}
       <MyReflectionModal
         isOpen={bookmarksOpen}
         onClose={() => setBookmarksOpen(false)}
@@ -296,8 +385,6 @@ export default function App() {
             setSelectedVideo(item);
           } else if (item.id.startsWith('short-')) {
             openShort(item);
-          } else {
-            document.getElementById('stories')?.scrollIntoView({ behavior: 'smooth' });
           }
         }}
       />
