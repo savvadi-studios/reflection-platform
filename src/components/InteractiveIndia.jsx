@@ -7,43 +7,48 @@ import {
   BookOpen, 
   ShieldCheck, 
   ArrowRight,
-  Layers
+  Crosshair,
+  Layers,
+  Info
 } from 'lucide-react';
 import { INDIA_REGIONS } from '../data/reflectionData';
 
 export default function InteractiveIndia({ videos, onSelectVideo }) {
   const [selectedRegionId, setSelectedRegionId] = useState('telangana');
+  const [hoveredRegionId, setHoveredRegionId] = useState(null);
 
   const selectedRegion = INDIA_REGIONS.find(r => r.id === selectedRegionId) || INDIA_REGIONS[0];
   const relatedVids = videos.filter(v => selectedRegion.relatedVideos.includes(v.id));
 
+  const fallbackImage = 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80';
+
   return (
-    <section id="india" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section Title */}
+    <section id="india" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-24">
+      {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-stone-800">
         <div>
           <div className="flex items-center gap-2 text-amber-500 font-semibold text-xs uppercase tracking-widest mb-1.5">
             <Compass className="w-4 h-4 text-amber-400" />
-            <span>Geographic & Civilizational Knowledge Engine</span>
+            <span>Civilizational Cartography & Regional Vault</span>
           </div>
-          <h2 className="font-cinzel text-3xl sm:text-4xl font-extrabold text-stone-100 tracking-wide">
+          <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black text-stone-100 tracking-wide">
             Interactive India
           </h2>
-          <p className="text-stone-400 text-xs sm:text-sm mt-1 max-w-xl">
-            Explore India’s historical landmarks, linguistic heritage, geopolitical crossroads, and regional archives by state.
+          <p className="text-stone-400 text-xs sm:text-sm mt-1 max-w-2xl leading-relaxed">
+            Select any region to unlock declassified state files, archaeological surveys, civilizational milestones, and Reflection documentaries.
           </p>
         </div>
 
-        {/* Region Quick Select Chips */}
-        <div className="mt-4 md:mt-0 flex flex-wrap gap-2">
+        {/* State Quick Switcher Pills */}
+        <div className="mt-4 md:mt-0 flex flex-wrap gap-1.5">
           {INDIA_REGIONS.map((r) => (
             <button
               key={r.id}
               onClick={() => setSelectedRegionId(r.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
                 selectedRegionId === r.id
-                  ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-stone-950 font-bold shadow-md shadow-orange-950/40'
-                  : 'bg-stone-900/80 hover:bg-stone-800 text-stone-300 border border-stone-800'
+                  ? 'bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 text-stone-950 font-bold shadow-md shadow-orange-950/40 scale-[1.04]'
+                  : 'bg-stone-900/80 hover:bg-stone-800 text-stone-300 border border-stone-800 hover:border-amber-500/30'
               }`}
             >
               {r.name}
@@ -54,237 +59,338 @@ export default function InteractiveIndia({ videos, onSelectVideo }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Visual Map / Graphic Panel (5 cols) */}
-        <div className="lg:col-span-5 rounded-3xl glass-panel p-6 border border-amber-500/20 relative overflow-hidden flex flex-col justify-between">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase font-mono tracking-widest text-amber-400 font-bold">
-              Subcontinent Cartography
-            </span>
-            <span className="text-[10px] text-stone-400 bg-stone-900 px-2 py-0.5 rounded-md border border-stone-800">
-              Interactive Hotspots
+        {/* Left: Cartography Vector Map Panel (5 cols) */}
+        <div className="lg:col-span-5 rounded-3xl glass-panel p-6 border border-amber-500/25 relative overflow-hidden flex flex-col justify-between shadow-2xl">
+          
+          {/* Subtle Ambient Background Gradients */}
+          <div className="absolute top-0 right-0 w-56 h-56 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-56 h-56 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Map Top Bar */}
+          <div className="flex items-center justify-between mb-2 relative z-10">
+            <div className="flex items-center gap-2">
+              <Crosshair className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: '30s' }} />
+              <span className="text-xs uppercase font-mono tracking-widest text-amber-400 font-bold">
+                Radar Telemetry 28°N • 77°E
+              </span>
+            </div>
+            <span className="text-[10px] text-emerald-400 font-mono bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/30">
+              ● Live Hotspots
             </span>
           </div>
 
-          {/* Stylized SVG Map Representation of India */}
-          <div className="relative aspect-[4/5] w-full flex items-center justify-center p-4">
-            <svg viewBox="0 0 400 480" className="w-full h-full drop-shadow-2xl">
+          {/* Authentic Faithful SVG Silhouette Map of India */}
+          <div className="relative aspect-[3/4] w-full flex items-center justify-center py-2 z-10">
+            <svg 
+              viewBox="0 0 420 520" 
+              className="w-full h-full drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] select-none"
+            >
               <defs>
-                <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#1c1917" />
-                  <stop offset="50%" stopColor="#292524" />
-                  <stop offset="100%" stopColor="#171717" />
+                <linearGradient id="indiaFillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#141418" />
+                  <stop offset="50%" stopColor="#1c1c24" />
+                  <stop offset="100%" stopColor="#111116" />
                 </linearGradient>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
+
+                <linearGradient id="selectedStateGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#EA580C" />
+                  <stop offset="100%" stopColor="#F59E0B" />
+                </linearGradient>
+
+                <filter id="radarGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur" />
                   <feComposite in="SourceGraphic" in2="blur" operator="over" />
                 </filter>
               </defs>
 
-              {/* Stylized India Landmass Outline */}
+              {/* Tactical Cartography Grid Lines */}
+              <g opacity="0.12" stroke="#F59E0B" strokeWidth="0.75" strokeDasharray="3 4">
+                <line x1="30" y1="80" x2="390" y2="80" />
+                <line x1="30" y1="180" x2="390" y2="180" />
+                <line x1="30" y1="280" x2="390" y2="280" />
+                <line x1="30" y1="380" x2="390" y2="380" />
+                <line x1="120" y1="20" x2="120" y2="500" />
+                <line x1="210" y1="20" x2="210" y2="500" />
+                <line x1="300" y1="20" x2="300" y2="500" />
+              </g>
+
+              {/* Detailed Accurate Outline of India */}
               <path
-                d="M 175,25 
-                   C 190,15 210,18 215,35 
-                   L 230,55 
-                   C 250,65 270,75 260,95 
-                   L 245,115 
-                   L 280,125 
-                   L 330,130 
-                   L 360,115 
-                   L 365,140 
-                   L 320,165 
-                   L 275,185 
-                   L 270,225 
-                   L 245,280 
-                   L 215,360 
-                   L 190,440 
-                   L 175,445 
-                   L 165,390 
-                   L 140,320 
-                   L 115,260 
-                   L 90,205 
-                   L 60,185 
-                   L 85,150 
-                   L 130,135 
-                   L 135,80 
-                   Z"
-                fill="url(#mapGradient)"
-                stroke="#D97706"
-                strokeWidth="1.5"
-                strokeOpacity="0.4"
-                className="hover:stroke-amber-400/80 transition-colors"
+                d="M 175,22 
+                   C 183,18 193,18 200,24 
+                   C 207,32 216,40 220,52 
+                   C 225,65 218,74 212,85 
+                   C 214,92 225,98 238,104 
+                   C 252,110 268,118 274,130 
+                   C 285,133 300,132 312,136 
+                   C 328,141 345,134 358,142 
+                   C 370,149 378,162 374,175 
+                   C 368,188 350,192 342,204 
+                   C 336,212 340,224 332,232 
+                   C 324,238 310,230 302,228 
+                   C 292,230 286,242 278,250 
+                   C 270,258 274,272 268,284 
+                   C 260,298 250,314 244,330 
+                   C 236,350 226,375 220,398 
+                   C 214,420 205,448 196,472 
+                   C 192,482 188,490 184,490 
+                   C 180,490 176,478 172,465 
+                   C 165,440 156,412 150,388 
+                   C 142,358 136,330 130,302 
+                   C 124,275 110,252 98,235 
+                   C 88,220 74,212 60,208 
+                   C 48,204 40,214 34,222 
+                   C 30,226 36,234 46,236 
+                   C 56,238 68,245 66,255 
+                   C 64,264 52,268 45,260 
+                   C 38,252 42,242 36,236 
+                   C 32,232 30,224 35,214 
+                   C 42,198 56,192 70,185 
+                   C 85,178 98,164 104,148 
+                   C 110,132 118,118 126,102 
+                   C 134,86 142,68 152,52 
+                   C 160,38 168,26 175,22 Z"
+                fill="url(#indiaFillGradient)"
+                stroke="#d97706"
+                strokeWidth="1.8"
+                strokeOpacity="0.55"
+                className="filter drop-shadow"
               />
 
-              {/* Latitude / Longitude Subtle Grid */}
-              <line x1="50" y1="120" x2="350" y2="120" stroke="#f59e0b" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
-              <line x1="50" y1="240" x2="350" y2="240" stroke="#f59e0b" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
-              <line x1="50" y1="360" x2="350" y2="360" stroke="#f59e0b" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
-              <line x1="200" y1="20" x2="200" y2="450" stroke="#f59e0b" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
-
-              {/* Hotspots for Regions */}
-              {/* Punjab */}
-              <g 
-                onClick={() => setSelectedRegionId('punjab')} 
-                className="cursor-pointer group/pin"
-                transform="translate(145, 100)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'punjab' ? 8 : 5} fill={selectedRegionId === 'punjab' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="10" y="4" fill="#E2E8F0" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Punjab</text>
+              {/* Subtle Coastal and Major River Accents (Ganga, Narmada, Godavari, Krishna) */}
+              <g stroke="#F59E0B" strokeWidth="0.8" fill="none" opacity="0.22">
+                {/* Ganga River Flow */}
+                <path d="M 180,120 Q 215,145 250,170 T 300,215" />
+                {/* Godavari River Flow */}
+                <path d="M 140,270 Q 180,275 240,295" />
+                {/* Krishna River Flow */}
+                <path d="M 145,310 Q 185,325 230,340" />
               </g>
 
-              {/* Delhi */}
-              <g 
-                onClick={() => setSelectedRegionId('delhi')} 
-                className="cursor-pointer group/pin"
-                transform="translate(175, 135)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'delhi' ? 8 : 5} fill={selectedRegionId === 'delhi' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="10" y="4" fill="#E2E8F0" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Delhi</text>
-              </g>
+              {/* Interactive Radar Hotspots for Each State */}
+              {INDIA_REGIONS.map((region) => {
+                const isSelected = selectedRegionId === region.id;
+                const isHovered = hoveredRegionId === region.id;
+                const { x, y } = region.mapCoords;
 
-              {/* Uttar Pradesh (Ayodhya) */}
-              <g 
-                onClick={() => setSelectedRegionId('up')} 
-                className="cursor-pointer group/pin"
-                transform="translate(210, 160)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'up' ? 8 : 5} fill={selectedRegionId === 'up' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="10" y="4" fill="#E2E8F0" fontSize="10" fontFamily="sans-serif" fontWeight="bold">UP (Ayodhya)</text>
-              </g>
+                return (
+                  <g 
+                    key={region.id}
+                    onClick={() => setSelectedRegionId(region.id)}
+                    onMouseEnter={() => setHoveredRegionId(region.id)}
+                    onMouseLeave={() => setHoveredRegionId(null)}
+                    className="cursor-pointer group/node"
+                  >
+                    {/* Animated Pulsing Radar Rings when active */}
+                    {isSelected && (
+                      <>
+                        <circle 
+                          cx={x} 
+                          cy={y} 
+                          r="18" 
+                          fill="none" 
+                          stroke="#F97316" 
+                          strokeWidth="1.5" 
+                          className="animate-ping"
+                          opacity="0.45"
+                        />
+                        <circle 
+                          cx={x} 
+                          cy={y} 
+                          r="28" 
+                          fill="none" 
+                          stroke="#EAB308" 
+                          strokeWidth="1" 
+                          strokeDasharray="2 3"
+                          opacity="0.35"
+                        />
+                      </>
+                    )}
 
-              {/* West Bengal */}
-              <g 
-                onClick={() => setSelectedRegionId('bengal')} 
-                className="cursor-pointer group/pin"
-                transform="translate(265, 205)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'bengal' ? 8 : 5} fill={selectedRegionId === 'bengal' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="10" y="4" fill="#E2E8F0" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Bengal</text>
-              </g>
+                    {/* Outer Target Dot */}
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={isSelected ? 9 : isHovered ? 7 : 5}
+                      fill={isSelected ? '#EA580C' : isHovered ? '#F59E0B' : '#78350F'}
+                      stroke={isSelected ? '#FDE047' : '#D97706'}
+                      strokeWidth={isSelected ? 2 : 1.2}
+                      filter="url(#radarGlow)"
+                      className="transition-all duration-300"
+                    />
 
-              {/* Maharashtra */}
-              <g 
-                onClick={() => setSelectedRegionId('maharashtra')} 
-                className="cursor-pointer group/pin"
-                transform="translate(145, 255)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'maharashtra' ? 8 : 5} fill={selectedRegionId === 'maharashtra' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="-70" y="4" fill="#E2E8F0" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Maharashtra</text>
-              </g>
+                    {/* Inner Core Dot */}
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={isSelected ? 3.5 : 2}
+                      fill="#FFFFFF"
+                    />
 
-              {/* Telangana (Hyderabad) */}
-              <g 
-                onClick={() => setSelectedRegionId('telangana')} 
-                className="cursor-pointer group/pin"
-                transform="translate(190, 275)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'telangana' ? 10 : 6} fill={selectedRegionId === 'telangana' ? '#F97316' : '#EAB308'} className="animate-ping" opacity="0.4" />
-                <circle cx="0" cy="0" r={selectedRegionId === 'telangana' ? 8 : 6} fill={selectedRegionId === 'telangana' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="12" y="4" fill="#FDE047" fontSize="11" fontFamily="sans-serif" fontWeight="extrabold">Telangana</text>
-              </g>
-
-              {/* Tamil Nadu */}
-              <g 
-                onClick={() => setSelectedRegionId('tamilnadu')} 
-                className="cursor-pointer group/pin"
-                transform="translate(180, 390)"
-              >
-                <circle cx="0" cy="0" r={selectedRegionId === 'tamilnadu' ? 8 : 5} fill={selectedRegionId === 'tamilnadu' ? '#EA580C' : '#F59E0B'} filter="url(#glow)" />
-                <text x="10" y="4" fill="#E2E8F0" fontSize="10" fontFamily="sans-serif" fontWeight="bold">Tamil Nadu</text>
-              </g>
+                    {/* Clean Offset Callout Label with Background Box */}
+                    <g transform={`translate(${x + 12}, ${y - 8})`}>
+                      <rect
+                        x="-3"
+                        y="-10"
+                        width={region.name.length * 6.8 + 14}
+                        height="18"
+                        rx="4"
+                        fill={isSelected ? '#0c0d12' : '#14141a'}
+                        stroke={isSelected ? '#F59E0B' : '#292524'}
+                        strokeWidth="1"
+                        opacity={isSelected ? 0.95 : 0.8}
+                      />
+                      <text
+                        x="4"
+                        y="3"
+                        fill={isSelected ? '#FDE047' : '#D6D3D1'}
+                        fontSize="9.5"
+                        fontFamily="sans-serif"
+                        fontWeight={isSelected ? 'bold' : '600'}
+                        letterSpacing="0.03em"
+                      >
+                        {region.name}
+                      </text>
+                    </g>
+                  </g>
+                );
+              })}
             </svg>
           </div>
 
-          <p className="text-[11px] text-stone-500 text-center mt-2 italic">
-            Click any pin on the map or the state chips above to reveal regional documentaries and civilizational archives.
-          </p>
+          {/* Map Footer Prompt */}
+          <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between text-[11px] text-stone-400">
+            <span className="flex items-center gap-1.5">
+              <Info className="w-3.5 h-3.5 text-amber-400" />
+              <span>Click any node to navigate states</span>
+            </span>
+            <span className="font-mono text-amber-400/80">
+              Active: {selectedRegion.name}
+            </span>
+          </div>
+
         </div>
 
-        {/* Selected Region Deep-Dive Explorer (7 cols) */}
-        <div className="lg:col-span-7 rounded-3xl glass-panel p-6 sm:p-8 border border-amber-500/20 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-stone-800">
-            <div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-orange-500" />
-                <h3 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-stone-100">
+        {/* Right: State Dossier Profile & Documentaries (7 cols) */}
+        <div className="lg:col-span-7 rounded-3xl glass-panel border border-amber-500/25 overflow-hidden shadow-2xl space-y-6">
+          
+          {/* Panoramic State Banner Header */}
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
+            <img
+              src={selectedRegion.bannerImage}
+              alt={selectedRegion.name}
+              onError={(e) => { e.currentTarget.src = fallbackImage; }}
+              className="w-full h-full object-cover"
+            />
+            {/* Dark gradient for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0d10] via-black/40 to-black/60" />
+
+            {/* Banner Overlay Info */}
+            <div className="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-600/90 text-stone-950">
+                    State Dossier
+                  </span>
+                  <span className="text-xs text-amber-300 font-mono">
+                    Focal Center: {selectedRegion.capital}
+                  </span>
+                </div>
+                <h3 className="font-cinzel text-3xl sm:text-4xl font-black text-stone-100 drop-shadow-md">
                   {selectedRegion.name}
                 </h3>
+                <p className="text-xs text-amber-200/90 font-medium italic mt-0.5">
+                  "{selectedRegion.tagline}"
+                </p>
               </div>
-              <span className="text-xs text-amber-400 font-mono tracking-wider ml-7">
-                Capital / Focal Center: {selectedRegion.capital}
+
+              {/* 3 Metric Pills */}
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                <div className="px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
+                  <span className="block text-xs font-bold text-amber-400">{selectedRegion.stats.videos}</span>
+                  <span className="text-[9px] uppercase tracking-wider text-stone-400">Videos</span>
+                </div>
+                <div className="px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
+                  <span className="block text-xs font-bold text-amber-400">{selectedRegion.stats.articles}</span>
+                  <span className="text-[9px] uppercase tracking-wider text-stone-400">Articles</span>
+                </div>
+                <div className="px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-stone-800 text-center">
+                  <span className="block text-xs font-bold text-emerald-400">{selectedRegion.stats.sources}</span>
+                  <span className="text-[9px] uppercase tracking-wider text-stone-400">Sources</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 sm:p-8 pt-0 space-y-6">
+            
+            {/* State Civilizational Description */}
+            <p className="text-stone-300 text-sm leading-relaxed">
+              {selectedRegion.description}
+            </p>
+
+            {/* Key Historical & Cultural Pillars */}
+            <div>
+              <span className="text-xs uppercase font-bold tracking-widest text-stone-400 block mb-2.5">
+                Key Historical & Cultural Pillars:
               </span>
-            </div>
-
-            {/* Region Stats */}
-            <div className="flex items-center gap-3">
-              <div className="px-3 py-1.5 rounded-xl bg-stone-900 border border-stone-800 text-center">
-                <span className="block text-xs font-bold text-amber-400">{selectedRegion.stats.videos}</span>
-                <span className="text-[9px] uppercase tracking-wider text-stone-400">Videos</span>
-              </div>
-              <div className="px-3 py-1.5 rounded-xl bg-stone-900 border border-stone-800 text-center">
-                <span className="block text-xs font-bold text-amber-400">{selectedRegion.stats.articles}</span>
-                <span className="text-[9px] uppercase tracking-wider text-stone-400">Articles</span>
-              </div>
-              <div className="px-3 py-1.5 rounded-xl bg-stone-900 border border-stone-800 text-center">
-                <span className="block text-xs font-bold text-emerald-400">{selectedRegion.stats.sources}</span>
-                <span className="text-[9px] uppercase tracking-wider text-stone-400">Sources</span>
+              <div className="flex flex-wrap gap-2">
+                {selectedRegion.focalPoints.map((point) => (
+                  <span
+                    key={point}
+                    className="px-3 py-1.5 rounded-xl bg-stone-900/90 text-amber-300 text-xs border border-amber-500/25 font-medium flex items-center gap-1.5 shadow-sm"
+                  >
+                    <Sparkles className="w-3 h-3 text-orange-400" />
+                    <span>{point}</span>
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Description */}
-          <p className="text-stone-300 text-sm leading-relaxed">
-            {selectedRegion.description}
-          </p>
+            {/* Reflection Documentaries on Selected State */}
+            <div className="pt-4 border-t border-stone-800">
+              <span className="text-xs uppercase font-bold tracking-widest text-amber-400 block mb-3.5">
+                Archival Documentaries on {selectedRegion.name}:
+              </span>
 
-          {/* Key Focal Points */}
-          <div>
-            <span className="text-xs uppercase font-bold tracking-wider text-stone-400 block mb-2">
-              Key Historical & Cultural Pillars:
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {selectedRegion.focalPoints.map((point) => (
-                <span
-                  key={point}
-                  className="px-3 py-1 rounded-lg bg-stone-900/90 text-amber-300 text-xs border border-amber-500/20 font-medium"
-                >
-                  ⚡ {point}
-                </span>
-              ))}
-            </div>
-          </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {relatedVids.map((v) => (
+                  <div
+                    key={v.id}
+                    onClick={() => onSelectVideo(v)}
+                    className="p-3 rounded-2xl glass-panel glass-panel-hover border border-stone-800 flex gap-3.5 cursor-pointer group"
+                  >
+                    <div className="relative w-28 h-18 rounded-xl overflow-hidden shrink-0 bg-stone-950">
+                      <img
+                        src={v.thumbnail}
+                        alt={v.title}
+                        onError={(e) => { e.currentTarget.src = fallbackImage; }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                      <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 text-[9px] font-mono text-stone-300">
+                        {v.duration}
+                      </div>
+                    </div>
 
-          {/* Related Reflection Documentaries for this State */}
-          <div className="pt-4 border-t border-stone-800">
-            <span className="text-xs uppercase font-bold tracking-wider text-amber-400 block mb-3">
-              Reflection Documentaries on {selectedRegion.name}:
-            </span>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {relatedVids.map((v) => (
-                <div
-                  key={v.id}
-                  onClick={() => onSelectVideo(v)}
-                  className="p-3 rounded-2xl glass-panel glass-panel-hover border border-stone-800 flex gap-3 cursor-pointer group"
-                >
-                  <img
-                    src={v.thumbnail}
-                    alt={v.title}
-                    className="w-24 h-16 object-cover rounded-xl shrink-0 group-hover:scale-105 transition-transform"
-                  />
-                  <div className="min-w-0 flex flex-col justify-between">
-                    <h5 className="font-bold text-xs text-stone-100 group-hover:text-amber-300 line-clamp-2">
-                      {v.title}
-                    </h5>
-                    <div className="flex items-center justify-between text-[10px] text-stone-400 mt-1">
-                      <span>{v.duration}</span>
-                      <span className="text-amber-400 font-semibold group-hover:translate-x-0.5 transition-transform">
-                        Watch →
-                      </span>
+                    <div className="min-w-0 flex flex-col justify-between py-0.5">
+                      <h5 className="font-bold text-xs text-stone-100 group-hover:text-amber-300 line-clamp-2 leading-snug transition-colors">
+                        {v.title}
+                      </h5>
+                      <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1">
+                        <span className="text-emerald-400/90 font-mono font-medium">
+                          ✓ Verified
+                        </span>
+                        <span className="text-amber-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-0.5">
+                          Watch <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
           </div>
 
         </div>

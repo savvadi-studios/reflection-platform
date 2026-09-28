@@ -42,6 +42,22 @@ export default function Navbar({
     { id: 'shorts', label: 'Shorts' },
   ];
 
+  React.useEffect(() => {
+    const sections = ['hero', 'videos', 'archive', 'india', 'timeline', 'stories', 'podcasts', 'shorts'];
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [setActiveSection]);
+
   const handleNavClick = (id) => {
     setActiveSection(id);
     setMobileMenuOpen(false);
