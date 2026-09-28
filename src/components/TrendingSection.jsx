@@ -85,7 +85,7 @@ export default function TrendingSection({
           <div
             key={item.rank}
             onClick={item.handler}
-            className="group rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between border border-white/[0.08] hover:border-amber-400/40 hover:shadow-[0_16px_40px_rgba(0,0,0,0.8),0_0_25px_rgba(245,158,11,0.15)] hover:scale-[1.02] transition-all duration-300"
+            className="group rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between border border-white/[0.08] hover:border-amber-400/50 hover:shadow-[0_20px_45px_rgba(0,0,0,0.85),0_0_30px_rgba(245,158,11,0.2)] hover:scale-[1.02] transition-all duration-300 relative"
           >
             {/* Poster Showcase */}
             <div className="relative aspect-[16/10] overflow-hidden bg-stone-950">
@@ -97,11 +97,24 @@ export default function TrendingSection({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e13] via-transparent to-black/40" />
 
-              {/* Hover Play Icon Beacon */}
+              {/* Specular Shimmer Beam */}
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-[-25deg] pointer-events-none group-hover:animate-shimmer" />
+
+              {/* Hover Play Icon Beacon with Golden Shockwave */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-10 h-10 rounded-full bg-amber-400/90 text-stone-950 flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
+                <div className="relative flex items-center justify-center">
+                  <div className="absolute inset-0 w-12 h-12 rounded-full bg-amber-400/40 animate-ping opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-stone-950 flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                    <Play className="w-4 h-4 fill-current ml-0.5" />
+                  </div>
                 </div>
+              </div>
+
+              {/* Audio Equalizer Bars on Hover (bottom right) */}
+              <div className="absolute bottom-2 right-2 flex items-end gap-0.5 h-4 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="w-0.5 bg-amber-400 rounded-full animate-wave-1" />
+                <span className="w-0.5 bg-orange-400 rounded-full animate-wave-2" />
+                <span className="w-0.5 bg-amber-300 rounded-full animate-wave-3" />
               </div>
 
               {/* Rank Badge with Luxury Glow */}

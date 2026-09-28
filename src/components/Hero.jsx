@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Compass, ChevronDown, ArrowRight, Sparkles, ShieldCheck, Film, Award } from 'lucide-react';
+import { Play, Compass, ChevronDown, ArrowRight, Sparkles, ShieldCheck, Film, Award, Radio } from 'lucide-react';
 
 export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending, settings = {} }) {
   const heroTagline = settings.heroTagline || 'See Beyond the Surface.';
@@ -70,6 +70,141 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
           </button>
         </div>
 
+        {/* 3D Holographic Cinema Showcase Deck */}
+        <div className="relative pt-6 sm:pt-10 w-full max-w-4xl mx-auto">
+          
+          {/* Rotating Astrolabe / Celestial Coordinates HUD in Background */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] h-[340px] sm:h-[500px] rounded-full border border-amber-400/10 pointer-events-none animate-spin-slow">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[9px] font-mono text-amber-400/40">000° NORTH</div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 text-[9px] font-mono text-amber-400/40">180° SOUTH</div>
+            <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[9px] font-mono text-amber-400/40 -rotate-90">270° WEST</div>
+            <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 text-[9px] font-mono text-amber-400/40 rotate-90">090° EAST</div>
+          </div>
+
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] sm:w-[390px] h-[260px] sm:h-[390px] rounded-full border border-dashed border-orange-500/15 pointer-events-none animate-spin-reverse" />
+
+          {/* 3D Perspective Stage Container */}
+          <div 
+            className="relative z-10"
+            style={{ perspective: '1200px' }}
+          >
+            {/* Floating Left Preview Shard */}
+            <div 
+              onClick={onWatchLatest}
+              className="hidden md:block absolute -left-12 top-10 w-64 aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-stone-900/60 backdrop-blur-md shadow-2xl opacity-60 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer pointer-events-auto"
+              style={{
+                transform: 'rotateY(18deg) rotateZ(-3deg) translateZ(-60px)',
+                transformStyle: 'preserve-3d'
+              }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" 
+                alt="Archival study" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent p-3 flex flex-col justify-end">
+                <span className="text-[9px] font-mono text-amber-400 uppercase tracking-widest">Archive 02</span>
+                <h4 className="text-xs font-semibold text-stone-200 line-clamp-1">Telangana: Armed Rebellion</h4>
+              </div>
+            </div>
+
+            {/* Centerpiece 3D Glass Master Card */}
+            <div 
+              onClick={onWatchLatest}
+              className="relative mx-auto w-full max-w-2xl rounded-3xl overflow-hidden glass-card border border-amber-400/35 shadow-[0_20px_60px_rgba(0,0,0,0.8),0_0_40px_rgba(245,158,11,0.2)] group cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:border-amber-400/70"
+            >
+              {/* Specular Glare Shimmer Beam */}
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] pointer-events-none animate-shimmer" />
+
+              {/* Cybernetic HUD Frame Brackets */}
+              <div className="absolute top-3 left-4 z-20 flex items-center gap-2 text-[10px] font-mono text-amber-300 bg-stone-950/75 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/25">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <span>MASTER 4K HDR // DECLASSIFIED ARCHIVE</span>
+              </div>
+
+              <div className="absolute top-3 right-4 z-20 hidden sm:flex items-center gap-2 text-[10px] font-mono text-stone-300 bg-stone-950/75 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
+                <Radio className="w-3 h-3 text-orange-400 animate-pulse" />
+                <span>PRIMARY EVIDENCE CITATIONS: 100%</span>
+              </div>
+
+              {/* Video Preview Visual */}
+              <div className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden bg-stone-950">
+                <img 
+                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80" 
+                  alt="Featured Documentary"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-95" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent" />
+
+                {/* Center Glowing Play Button with Shockwave Rings */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+                  <div className="absolute inset-0 w-16 h-16 rounded-full bg-amber-400/30 animate-ping pointer-events-none" />
+                  <div className="w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-300 text-stone-950 flex items-center justify-center shadow-[0_0_40px_rgba(245,158,11,0.6)] group-hover:scale-110 group-active:scale-95 transition-transform duration-300">
+                    <Play className="w-6 sm:w-8 h-6 sm:h-8 fill-current ml-1" />
+                  </div>
+                </div>
+
+                {/* Bottom Audio Visualizer & Metadata */}
+                <div className="absolute bottom-3 left-4 right-4 z-20 flex items-end justify-between">
+                  <div className="space-y-1 text-left">
+                    <div className="flex items-center gap-2">
+                      <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold uppercase">Featured Investigation</span>
+                      <span className="text-stone-400 text-xs font-mono">48:12</span>
+                    </div>
+                    <h3 className="font-cinzel text-base sm:text-xl font-bold text-stone-100 group-hover:text-amber-200 transition-colors">
+                      The Great Partition of 1947: The Radcliffe Line
+                    </h3>
+                  </div>
+
+                  {/* Equalizer Waveform Bars */}
+                  <div className="hidden sm:flex items-end gap-1 h-6 px-2.5 py-1 rounded-lg bg-stone-950/60 backdrop-blur-md border border-white/10">
+                    <span className="w-1 bg-amber-400 rounded-full animate-wave-1" />
+                    <span className="w-1 bg-orange-400 rounded-full animate-wave-2" />
+                    <span className="w-1 bg-amber-300 rounded-full animate-wave-3" />
+                    <span className="w-1 bg-emerald-400 rounded-full animate-wave-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Right Preview Shard */}
+            <div 
+              onClick={onWatchLatest}
+              className="hidden md:block absolute -right-12 top-10 w-64 aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-stone-900/60 backdrop-blur-md shadow-2xl opacity-60 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer pointer-events-auto"
+              style={{
+                transform: 'rotateY(-18deg) rotateZ(3deg) translateZ(-60px)',
+                transformStyle: 'preserve-3d'
+              }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?auto=format&fit=crop&w=600&q=80" 
+                alt="Archival study" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-transparent p-3 flex flex-col justify-end">
+                <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest">Archive 03</span>
+                <h4 className="text-xs font-semibold text-stone-200 line-clamp-1">Chola Maritime Empire</h4>
+              </div>
+            </div>
+          </div>
+
+          {/* Cyber Telemetry Readout Footing */}
+          <div className="pt-3.5 flex flex-wrap items-center justify-between text-[10px] font-mono text-stone-400 px-4">
+            <div className="flex items-center gap-2">
+              <span className="text-amber-400 font-bold">LAT/LONG</span>
+              <span>20° 35' 38" N, 78° 57' 46" E</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-stone-300">GEO-DATUM: WGS-84</span>
+              <span className="text-emerald-400 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
+                SATELLITE SYNC
+              </span>
+            </div>
+          </div>
+
+        </div>
+
         {/* Floating Feature Badges */}
         <div className="pt-6 flex flex-wrap items-center justify-center gap-3 text-xs">
           <div className="px-3.5 py-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md flex items-center gap-2 text-stone-300">
@@ -89,7 +224,7 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
         </div>
 
         {/* Refined Minimalist Ticker Line */}
-        <div className="pt-8 sm:pt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-stone-400 font-mono">
+        <div className="pt-8 sm:pt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-stone-400 font-mono">
           {tickerItems.map((item, idx) => (
             <React.Fragment key={idx}>
               <span className={idx % 2 === 1 ? 'text-amber-300 font-medium' : 'text-stone-400'}>

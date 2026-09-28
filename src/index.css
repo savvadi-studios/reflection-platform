@@ -117,3 +117,95 @@
   will-change: transform;
 }
 
+/* Advanced Cinematic Graphics & Lighting Keyframes */
+@keyframes shimmerSlide {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.animate-shimmer {
+  animation: shimmerSlide 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 28s linear infinite;
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 22s linear infinite;
+}
+
+@keyframes radarPing {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  50% { opacity: 0.5; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+.animate-radar-ping {
+  animation: radarPing 2.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes photonDash {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-photon-dash {
+  stroke-dasharray: 12, 180;
+  animation: photonDash 4s linear infinite;
+}
+
+@keyframes neonBorderRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.neon-border-active {
+  position: relative;
+}
+.neon-border-active::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.6), rgba(234, 88, 12, 0.2), rgba(6, 182, 212, 0.4), rgba(245, 158, 11, 0.6));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Equalizer audio wave bars */
+@keyframes audioWave1 {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+@keyframes audioWave2 {
+  0%, 100% { height: 16px; }
+  50% { height: 6px; }
+}
+@keyframes audioWave3 {
+  0%, 100% { height: 8px; }
+  50% { height: 22px; }
+}
+@keyframes audioWave4 {
+  0%, 100% { height: 20px; }
+  50% { height: 5px; }
+}
+
+.animate-wave-1 { animation: audioWave1 0.85s ease-in-out infinite; }
+.animate-wave-2 { animation: audioWave2 1.1s ease-in-out infinite; }
+.animate-wave-3 { animation: audioWave3 0.75s ease-in-out infinite; }
+.animate-wave-4 { animation: audioWave4 0.95s ease-in-out infinite; }
+

@@ -115,11 +115,24 @@ export default function VideoHub({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e13] via-black/25 to-black/30" />
 
-                  {/* Play Button Glow Ring */}
+                  {/* Specular Shimmer Beam */}
+                  <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-[-25deg] pointer-events-none group-hover:animate-shimmer" />
+
+                  {/* Play Button Glow Ring with Shockwave */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-12 h-12 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center shadow-2xl opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
-                      <Play className="w-5 h-5 fill-current ml-0.5" />
+                    <div className="relative flex items-center justify-center">
+                      <div className="absolute inset-0 w-14 h-14 rounded-full bg-amber-400/40 animate-ping opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-stone-950 flex items-center justify-center shadow-2xl opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                        <Play className="w-5 h-5 fill-current ml-0.5" />
+                      </div>
                     </div>
+                  </div>
+
+                  {/* Audio Equalizer Bars on Hover (bottom left) */}
+                  <div className="absolute bottom-3 left-3 flex items-end gap-0.5 h-4 px-1.5 py-0.5 rounded bg-black/70 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="w-0.5 bg-amber-400 rounded-full animate-wave-1" />
+                    <span className="w-0.5 bg-orange-400 rounded-full animate-wave-2" />
+                    <span className="w-0.5 bg-amber-300 rounded-full animate-wave-3" />
                   </div>
 
                   {/* Duration Badge */}

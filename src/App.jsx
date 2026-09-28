@@ -304,7 +304,7 @@ export default function App() {
               <div
                 key={s.id}
                 onClick={() => openShort(s)}
-                className="group relative aspect-[9/16] rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between p-4 sm:p-5 border border-white/[0.08] hover:border-amber-400/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.9),0_0_25px_rgba(245,158,11,0.15)] hover:scale-[1.03] transition-all duration-300"
+                className="group relative aspect-[9/16] rounded-3xl overflow-hidden glass-card cursor-pointer flex flex-col justify-between p-4 sm:p-5 border border-white/[0.08] hover:border-amber-400/50 hover:shadow-[0_25px_55px_rgba(0,0,0,0.95),0_0_30px_rgba(245,158,11,0.22)] hover:scale-[1.03] transition-all duration-300"
               >
                 {/* Poster Image with Zoom */}
                 <img
@@ -315,12 +315,24 @@ export default function App() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/40 z-10 group-hover:via-black/20 transition-colors" />
 
+                {/* Specular Glare Shimmer Beam */}
+                <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-[-25deg] pointer-events-none group-hover:animate-shimmer z-10" />
+
                 {/* Top Badge & Play Trigger */}
                 <div className="relative z-20 flex justify-between items-center">
-                  <span className="text-[10px] font-mono font-medium uppercase text-white bg-black/65 px-2.5 py-1 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
-                    ⚡ Short
-                  </span>
-                  <div className="w-9 h-9 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center shadow-xl group-hover:scale-115 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.6)] transition-all duration-300">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[10px] font-mono font-medium uppercase text-white bg-black/70 px-2.5 py-1 rounded-full border border-white/10 backdrop-blur-md shadow-sm">
+                      ⚡ Short
+                    </span>
+                    {/* Live Waveform Indicator */}
+                    <div className="flex items-end gap-0.5 h-3 px-1.5 py-0.5 rounded bg-black/60 backdrop-blur-md">
+                      <span className="w-0.5 bg-amber-400 rounded-full animate-wave-1" />
+                      <span className="w-0.5 bg-orange-400 rounded-full animate-wave-2" />
+                      <span className="w-0.5 bg-amber-300 rounded-full animate-wave-3" />
+                    </div>
+                  </div>
+                  
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-stone-950 flex items-center justify-center shadow-xl group-hover:scale-115 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.6)] transition-all duration-300">
                     <Play className="w-4 h-4 fill-current ml-0.5" />
                   </div>
                 </div>

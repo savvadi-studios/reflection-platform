@@ -262,6 +262,18 @@ export default function CommunitySection() {
         {/* Right Column: Group Chat Stream & Live Composer (8 cols) */}
         <div className="lg:col-span-8 flex flex-col justify-between bg-black/25">
           
+          {/* Cyber Telemetry Status Bar */}
+          <div className="px-4 py-1.5 bg-black/60 border-b border-white/[0.06] flex items-center justify-between text-[9px] font-mono text-stone-400 select-none">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>DISCOURSE CHANNEL SECURE // 256-BIT SYNC</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>LATENCY: 18ms</span>
+              <span className="text-amber-400">TELEMETRY: ACTIVE</span>
+            </div>
+          </div>
+
           {/* Room Header & Pinned Prompt */}
           <div className="p-4 sm:p-5 border-b border-white/[0.08] flex items-center justify-between bg-white/[0.01]">
             <div>
@@ -282,11 +294,12 @@ export default function CommunitySection() {
             </div>
           </div>
 
-          {/* Pinned Topic Banner */}
-          <div className="px-4 sm:px-5 py-2.5 bg-amber-500/10 border-b border-amber-500/20 flex items-center gap-2 text-xs text-amber-200">
-            <Pin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span className="font-semibold text-amber-300 font-mono text-[11px]">Pinned Topic:</span>
-            <span className="text-stone-300 truncate">
+          {/* Pinned Topic Banner with Specular Shimmer */}
+          <div className="relative overflow-hidden px-4 sm:px-5 py-2.5 bg-amber-500/10 border-b border-amber-500/20 flex items-center gap-2 text-xs text-amber-200">
+            <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-amber-400/10 to-transparent skew-x-[-25deg] pointer-events-none animate-shimmer" />
+            <Pin className="w-3.5 h-3.5 text-amber-400 shrink-0 relative z-10" />
+            <span className="font-semibold text-amber-300 font-mono text-[11px] relative z-10">Pinned Topic:</span>
+            <span className="text-stone-300 truncate relative z-10">
               "How do declassified documents change our understanding of 20th century Indian history?"
             </span>
           </div>

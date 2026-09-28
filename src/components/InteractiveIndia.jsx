@@ -227,6 +227,11 @@ export default function InteractiveIndia({ videos = [], onSelectVideo }) {
           onMouseLeave={handleMouseLeave}
           className="lg:col-span-5 rounded-3xl p-4 sm:p-6 relative overflow-hidden border border-white/[0.12] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col items-center justify-between min-h-[640px] bg-gradient-to-b from-[#131625] via-[#0d101a] to-[#090b12]"
         >
+          {/* Precision HUD Reticle Corner Brackets */}
+          <div className="absolute top-2.5 left-3 text-[11px] font-mono text-cyan-400/40 pointer-events-none select-none">┌── [GRID: WGS-84]</div>
+          <div className="absolute top-2.5 right-3 text-[11px] font-mono text-cyan-400/40 pointer-events-none select-none">[TELEMETRY: LOCK] ──┐</div>
+          <div className="absolute bottom-2.5 left-3 text-[11px] font-mono text-cyan-400/40 pointer-events-none select-none">└── [DATUM: 4K]</div>
+          <div className="absolute bottom-2.5 right-3 text-[11px] font-mono text-cyan-400/40 pointer-events-none select-none">[NODES: 36] ──┘</div>
           
           {/* Luminous Ocean Backdrop Glow (Rich Cyan / Amber Aura) */}
           <div 
@@ -329,7 +334,29 @@ export default function InteractiveIndia({ videos = [], onSelectVideo }) {
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
+
+                {/* 9. Laser Scanner Beam Gradient */}
+                <linearGradient id="scannerBeamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="transparent" />
+                  <stop offset="25%" stopColor={colorTheme === 'cyan' ? '#06b6d4' : '#f59e0b'} stopOpacity="0.4" />
+                  <stop offset="50%" stopColor="#ffffff" stopOpacity="0.95" />
+                  <stop offset="75%" stopColor={colorTheme === 'cyan' ? '#06b6d4' : '#f59e0b'} stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="transparent" />
+                </linearGradient>
               </defs>
+
+              {/* HOLOGRAPHIC VERTICAL SCANNING LASER LINE */}
+              <g className="pointer-events-none select-none">
+                <line 
+                  x1="70" 
+                  y1="0" 
+                  x2="880" 
+                  y2="0" 
+                  stroke="url(#scannerBeamGrad)" 
+                  strokeWidth="2.5" 
+                  className="animate-scanline" 
+                />
+              </g>
 
               {/* AERIAL RADAR RINGS & BATHYMETRIC CONTOURS */}
               <g opacity="0.12" stroke={colorTheme === 'cyan' ? '#06b6d4' : '#f59e0b'} strokeWidth="1">
@@ -488,6 +515,96 @@ export default function InteractiveIndia({ videos = [], onSelectVideo }) {
               })}
 
               {/* ============================================================== */}
+              {/* LAYER 4.5: GEODESIC ARCHIVAL NETWORK ARCS & PHOTON PACKETS */}
+              {/* ============================================================== */}
+              <g id="geodesic-archival-grid" opacity="0.7" className="pointer-events-none">
+                {/* Delhi <-> Hyderabad */}
+                <path 
+                  d="M 375 310 Q 360 480 410 642" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#0891b2' : '#d97706'} 
+                  strokeWidth="1" 
+                  strokeDasharray="4 6" 
+                  opacity="0.35"
+                />
+                <path 
+                  d="M 375 310 Q 360 480 410 642" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#22d3ee' : '#fef08a'} 
+                  strokeWidth="2.2" 
+                  className="animate-photon-dash"
+                />
+
+                {/* Mumbai <-> Kolkata */}
+                <path 
+                  d="M 260 620 Q 480 520 690 505" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#0891b2' : '#d97706'} 
+                  strokeWidth="1" 
+                  strokeDasharray="4 6" 
+                  opacity="0.35"
+                />
+                <path 
+                  d="M 260 620 Q 480 520 690 505" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#22d3ee' : '#fef08a'} 
+                  strokeWidth="2.2" 
+                  className="animate-photon-dash"
+                />
+
+                {/* Srinagar <-> Bengaluru */}
+                <path 
+                  d="M 310 150 Q 290 480 380 780" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#0891b2' : '#d97706'} 
+                  strokeWidth="1" 
+                  strokeDasharray="4 6" 
+                  opacity="0.35"
+                />
+                <path 
+                  d="M 310 150 Q 290 480 380 780" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#22d3ee' : '#fef08a'} 
+                  strokeWidth="2.2" 
+                  className="animate-photon-dash"
+                />
+
+                {/* Guwahati <-> Chennai */}
+                <path 
+                  d="M 800 395 Q 640 590 470 780" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#0891b2' : '#d97706'} 
+                  strokeWidth="1" 
+                  strokeDasharray="4 6" 
+                  opacity="0.35"
+                />
+                <path 
+                  d="M 800 395 Q 640 590 470 780" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#22d3ee' : '#fef08a'} 
+                  strokeWidth="2.2" 
+                  className="animate-photon-dash"
+                />
+
+                {/* Kutch <-> Varanasi */}
+                <path 
+                  d="M 190 490 Q 360 410 530 420" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#0891b2' : '#d97706'} 
+                  strokeWidth="1" 
+                  strokeDasharray="4 6" 
+                  opacity="0.35"
+                />
+                <path 
+                  d="M 190 490 Q 360 410 530 420" 
+                  fill="none" 
+                  stroke={colorTheme === 'cyan' ? '#22d3ee' : '#fef08a'} 
+                  strokeWidth="2.2" 
+                  className="animate-photon-dash"
+                />
+              </g>
+
+              {/* ============================================================== */}
               {/* LAYER 5: 3D HOLOGRAPHIC VERTICAL LIGHT BEAM & RADAR BEACON */}
               {/* ============================================================== */}
               <g className="pointer-events-none">
@@ -499,21 +616,30 @@ export default function InteractiveIndia({ videos = [], onSelectVideo }) {
                   x2={activeGeo.cx}
                   y2={activeGeo.cy - 55}
                   stroke="url(#lightBeamGrad)"
-                  strokeWidth="3"
+                  strokeWidth="3.5"
                   strokeLinecap="round"
                   filter="url(#neonGlow)"
                 />
 
-                {/* Ground Radiating Wave Pulse */}
+                {/* Multiple Concentric Sonar Wave Pings */}
                 <circle
                   cx={activeGeo.cx}
                   cy={activeGeo.cy}
-                  r="28"
+                  r="24"
                   fill="none"
                   stroke={colorTheme === 'cyan' ? '#22d3ee' : '#f59e0b'}
                   strokeWidth="1.8"
-                  className="animate-ping origin-center"
-                  opacity="0.75"
+                  className="animate-radar-ping origin-center"
+                />
+                <circle
+                  cx={activeGeo.cx}
+                  cy={activeGeo.cy}
+                  r="45"
+                  fill="none"
+                  stroke={colorTheme === 'cyan' ? '#67e8f9' : '#fef08a'}
+                  strokeWidth="1.2"
+                  className="animate-radar-ping origin-center"
+                  style={{ animationDelay: '0.85s' }}
                 />
 
                 {/* Ground Target Ring */}
@@ -634,6 +760,15 @@ export default function InteractiveIndia({ videos = [], onSelectVideo }) {
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e13] via-black/45 to-transparent" />
+
+            {/* Specular Glare Shimmer Beam */}
+            <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] pointer-events-none animate-shimmer" />
+
+            {/* Declassified Archival Badge */}
+            <div className="absolute top-3.5 right-4 z-20 flex items-center gap-2 px-3 py-1 rounded-full bg-stone-950/75 backdrop-blur-md border border-amber-400/30 text-[10px] font-mono text-amber-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span>PRIMARY ARCHIVE VERIFIED</span>
+            </div>
 
             {/* Title & Stats Overlay */}
             <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
