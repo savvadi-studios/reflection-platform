@@ -621,3 +621,122 @@ export const AI_KNOWLEDGE_BASE = [
     sources: ['Sabhasad Bakhar (1697)', 'State Archives of Maharashtra']
   }
 ];
+
+export const COMMUNITY_CHANNELS = [
+  {
+    id: 'general',
+    name: 'general-discourse',
+    topic: 'Civilizational town hall for open inquiry, breaking analyses & daily perspectives',
+    icon: 'MessageSquare',
+    memberCount: '4,820 online'
+  },
+  {
+    id: 'history',
+    name: 'archival-history',
+    topic: 'Declassified files, 1947 Partition boundary papers, ancient empires & primary citations',
+    icon: 'BookOpen',
+    memberCount: '2,340 online'
+  },
+  {
+    id: 'constitution',
+    name: 'constitutional-ideas',
+    topic: 'Dr. Ambedkar, Constituent Assembly Debates (1946–49), fundamental rights & federalism',
+    icon: 'Scale',
+    memberCount: '1,910 online'
+  },
+  {
+    id: 'heritage',
+    name: 'regional-canvas',
+    topic: 'State cartography, Kakatiya stepwells, Chola maritime navy, temple engineering & living roots',
+    icon: 'MapPin',
+    memberCount: '1,650 online'
+  }
+];
+
+export const COMMUNITY_INITIAL_MESSAGES = [
+  {
+    id: 'msg-1',
+    channelId: 'general',
+    author: 'Aarav Deshmukh',
+    handle: '@aarav_history',
+    role: 'Historian Contributor',
+    roleColor: 'text-amber-400 border-amber-400/30 bg-amber-400/10',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+    timestamp: '12m ago',
+    text: 'Watching the new documentary on the 1947 Partition files. The fact that Radcliffe had never set foot east of Paris before being given five weeks to draw borders through Punjab & Bengal is staggering.',
+    reactions: { '🔥': 24, '💡': 18, '🇮🇳': 31 }
+  },
+  {
+    id: 'msg-2',
+    channelId: 'general',
+    author: 'Dr. Meera Sen',
+    handle: '@meerasen_archivist',
+    role: 'Verified Scholar',
+    roleColor: 'text-cyan-400 border-cyan-400/30 bg-cyan-400/10',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
+    timestamp: '9m ago',
+    text: 'Yes! And remember the declassified Transfer of Power documents (Vol. XII) explicitly confirm that Mountbatten deliberately delayed releasing the boundary award until August 17th to avoid British administrative liability.',
+    reactions: { '💡': 35, '📜': 22, '👏': 16 }
+  },
+  {
+    id: 'msg-3',
+    channelId: 'general',
+    author: 'Karthik Raja',
+    handle: '@karthik_sangam',
+    role: 'Citizen Thinker',
+    roleColor: 'text-stone-300 border-white/10 bg-white/5',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+    timestamp: '4m ago',
+    text: 'The 3D interactive India map in the section above is incredible. You can literally click any state and see its primary declassified sources. That’s what digital platforms should look like.',
+    reactions: { '🔥': 42, '🇮🇳': 28 }
+  },
+  {
+    id: 'msg-4',
+    channelId: 'history',
+    author: 'Vikramjit Roy',
+    handle: '@vikram_archives',
+    role: 'Verified Scholar',
+    roleColor: 'text-cyan-400 border-cyan-400/30 bg-cyan-400/10',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
+    timestamp: '25m ago',
+    text: 'Can anyone recommend primary sources on Herbert Risley’s 1901 anthropometric census? Looking into how pre-colonial professional guild mobility was codified into rigid blocks.',
+    reactions: { '💡': 14, '📜': 19 }
+  },
+  {
+    id: 'msg-5',
+    channelId: 'history',
+    author: 'Reflection Research Desk',
+    handle: '@reflection_desk',
+    role: 'Editorial Core',
+    roleColor: 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10',
+    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
+    timestamp: '18m ago',
+    text: 'Check Nicholas Dirks, "Castes of Mind: Colonialism and the Making of Modern India" (Princeton, 2001) and Census of India 1901 Vol. I Ethnographic Appendices. We covered this in the verified source breakdown!',
+    reactions: { '🔥': 29, '👏': 21 }
+  },
+  {
+    id: 'msg-6',
+    channelId: 'constitution',
+    author: 'Adv. Prerna Kulkarni',
+    handle: '@prerna_law',
+    role: 'Constitutional Jurist',
+    roleColor: 'text-amber-400 border-amber-400/30 bg-amber-400/10',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80',
+    timestamp: '32m ago',
+    text: 'Re-reading CAD Vol. VII today. Dr. Ambedkar’s address on November 4, 1948, defending the draft constitution remains unmatched: "Constitutional morality is not a natural sentiment. It has to be cultivated."',
+    reactions: { '💡': 54, '🇮🇳': 48, '👏': 30 }
+  },
+  {
+    id: 'msg-7',
+    channelId: 'heritage',
+    author: 'Siddharth Varma',
+    handle: '@siddharth_kakatiya',
+    role: 'Archival Contributor',
+    roleColor: 'text-orange-400 border-orange-400/30 bg-orange-400/10',
+    avatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=150&q=80',
+    timestamp: '40m ago',
+    text: 'Visited the Ramappa Temple stepwells in Telangana yesterday. The floating bricks technology (density less than water) from 1213 CE still boggles modern civil engineers.',
+    reactions: { '🔥': 38, '💡': 26, '🇮🇳': 45 }
+  }
+];
+

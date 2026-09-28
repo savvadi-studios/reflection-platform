@@ -31,13 +31,14 @@ export default function Navbar({
     { id: 'videos', label: 'Watch' },
     { id: 'shorts', label: 'Shorts' },
     { id: 'india', label: 'India' },
+    { id: 'community', label: 'Community' },
   ];
 
   // Scroll spy & background blur transition
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
-      const sections = ['hero', 'trending', 'videos', 'shorts', 'india'];
+      const sections = ['hero', 'trending', 'videos', 'shorts', 'india', 'community'];
       const scrollPos = window.scrollY + 180;
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);

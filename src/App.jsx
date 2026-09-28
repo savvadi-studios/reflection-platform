@@ -10,6 +10,7 @@ import ShortsModal from './components/ShortsModal';
 import MyReflectionModal from './components/MyReflectionModal';
 import Footer from './components/Footer';
 import DashboardPage from './pages/DashboardPage';
+import CommunitySection from './components/CommunitySection';
 
 import AmbientBackground from './components/AmbientBackground';
 import { 
@@ -347,6 +348,9 @@ export default function App() {
           videos={videos}
           onSelectVideo={setSelectedVideo}
         />
+
+        {/* 6. Live Citizen Community Town Hall Group Chat */}
+        <CommunitySection />
       </main>
 
       {/* Footer */}

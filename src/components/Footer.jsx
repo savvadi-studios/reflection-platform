@@ -106,6 +106,7 @@ export default function Footer({ onOpenSearch, onOpenDashboard }) {
               <li><a href="#trending" className="hover:text-white transition-colors">Trending Vault</a></li>
               <li><a href="#shorts" className="hover:text-white transition-colors">Vertical Archival Shorts</a></li>
               <li><a href="#india" className="hover:text-white transition-colors">Interactive India Map</a></li>
+              <li><a href="#community" className="hover:text-amber-300 text-amber-400/90 transition-colors font-medium">💬 Citizen Community Hall</a></li>
             </ul>
           </div>
 
