@@ -83,7 +83,7 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
         </svg>
       </div>
 
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 text-center">
         
         {/* Top Badge */}
         <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-stone-900/90 border border-amber-500/30 text-amber-300 text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.25em] font-semibold mb-6 sm:mb-8 shadow-lg shadow-orange-950/30 animate-in fade-in slide-in-from-bottom-3 duration-700 max-w-full truncate">
@@ -91,8 +91,11 @@ export default function Hero({ onWatchLatest, onExploreArchive, onScrollTrending
           <span className="truncate">Digital Media Platform • Knowledge Archive</span>
         </div>
 
-        {/* Hero Title */}
-        <h1 className="font-cinzel text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-[0.04em] sm:tracking-[0.08em] uppercase text-stone-100 drop-shadow-2xl select-none leading-tight sm:leading-none break-words">
+        {/* Hero Title - Guaranteed single line on every screen */}
+        <h1 
+          style={{ fontSize: 'clamp(2.2rem, 7.8vw, 6.2rem)' }}
+          className="font-cinzel font-black tracking-[0.06em] sm:tracking-[0.12em] uppercase text-stone-100 drop-shadow-2xl select-none leading-none whitespace-nowrap mx-auto"
+        >
           REFLECT<span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200 bg-clip-text text-transparent">ION</span>
         </h1>
 
